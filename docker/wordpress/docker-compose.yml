@@ -1,8 +1,20 @@
 # docker-compose 2和3有差别的，注意定义版本
 # 这里演示安装wordpress博客，这个博客如果手工安装，需要还是有点难度的。这里通过docker
+# 注意一定要使用国内registe
+
+#后台运行命令： docker-compose up -d   #如果只运行一次，就docker run; docker run
+#查看运行情况： docker-compose ps
+#停止运行：    docker-compose kill
+#查看日志：    docker-compose logs -f
+# docker-compose 命令详解 https://www.cnblogs.com/linpd/p/11008885.html
+
 # 运行
 # docker-compose build .  #如果需要编译，这里编译当前目录，如果是镜像就不需要
 # docker-compose up #直接开始运行,前台运行
+#
+# 查看安装的结果
+# 浏览器输入：http://localhost:8000/,  我这里使用我主机的域名访问：http://ityun.ltd:8000/ 输入相关博客信息，就可以了
+#
 version: '3'
 
 services:
@@ -11,7 +23,7 @@ services:
     image: mysql:5.7
     volumes:
       - db_data:/usr/local/data/mysql #磁盘映射文件
-    restart: always  
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -22,13 +34,14 @@ services:
     depends_on:
       - db  #这里依赖上一个服务
     image: wordpress:latest
-    ports: 
-      - "8000:80" #容器内部:容器外部
+    ports:
+      - "8000:80" #容器外部:容器内部
     restart: always
-    environment: 
+    environment:
       WORDPRESS_DB_HOST: db:3306 #这里注意，不用写具体的ip,直接写上一个服务db,内部自动映射
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
 
-volumes: 
+
+volumes:
   db_data:

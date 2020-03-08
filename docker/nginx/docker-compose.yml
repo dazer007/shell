@@ -1,0 +1,17 @@
+# "docker-compose.yml"
+#后台运行命令： docker-compose up -d   #如果只运行一次，就docker run; docker run
+#查看运行情况： docker-compose ps
+#停止运行：    docker-compose kill
+#查看日志：    docker-compose logs -f
+# docker-compose 命令详解 https://www.cnblogs.com/linpd/p/11008885.html
+nginx:
+  image: nginx:1.14.2 #mini镜像，https://hub.docker.com/_/nginx
+  volumes: #磁盘映射； 当前目录下面的data/conf.d映射到容器里面
+    - ./data/conf.d:/etc/nginx/conf.d
+    # - ./data/ssl:/etc/nginx/ssl # ssl文件配置
+    - ./logs/error.log /etc/nginx/logs/error.log
+    - ./logs/access.log /etc/nginx/logs/access.log
+  net: host # 直接在云主机监听端口。
+  ports:
+    - "80:80"
+  restart: always
