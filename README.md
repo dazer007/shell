@@ -4,7 +4,7 @@
 常用shell命令
 
 #### 软件架构
-软件架构说明
+shell、docker、docker-componse、k8s
 
 
 #### 安装教程
