@@ -10,6 +10,7 @@
 # docker-compose 命令详解 https://www.cnblogs.com/linpd/p/11008885.html
 # 参考链接地址 https://github.com/kkmike999/docker-compose-php-nginx-mysql
 # 这个参考链接有启动mysql的； 还有依赖关系，依赖的就是先启动。
+# docker-compose,其实是用于单机版的，多机器，就需要使用docker自带的swarm或者k8s,他们是专门跨服务器进行部署。
 
 # 进入容器内部&查看容器结构
 # 1：docker-compose exec container_name bash
@@ -21,6 +22,7 @@
 #  └── nginx.conf
 
 # 访问地址： http://localhost:8000/
+
 
 
 version: '3'
@@ -36,6 +38,7 @@ services:
       # - "./data/conf.d:/etc/nginx/conf.d" #不使用这个，我们直接使用 根 nginx.conf
       - "./data/conf:/etc/nginx"
       - "./data/html:/usr/share/nginx/html"
+      - ./data/nginx/log/:/var/log/nginx/:rw
 
 
 

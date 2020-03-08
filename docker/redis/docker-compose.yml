@@ -1,0 +1,60 @@
+# docker-compose 通过docker-compose.yml 安装 https://blog.csdn.net/xiayu204575/article/details/101565971
+version: "3"
+
+services:
+
+  redis:
+    image: redis:5.0.7-alpine
+    container_name: redis
+    restart: always
+    command: --appendonly yes #redis持久化开启，aof模式持久化需要手工开启
+    ports:
+      - 6379:6379 # 外部端口：内部端口
+    volumes:
+      - ./redis/data:/data/redis:rw
+
+  #### mongodb; 如果要开启远程访问，可能要进入容器修改端口：vim /etc/mongod.conf.orig
+  mongo-db:
+    image: mongo:4.2
+    container_name: mongo-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      REDIS_HOST: redis #随便测试的，注入一个环境变量
+      TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin@123
+    volumes:
+      #- ./mongodb/conf/mongodb.conf:/etc/mongodb/mongodb.conf:rw
+      - ./mongodb/data/:/data/db:rw
+      - ./mongodb/log:/var/log/mongodb:rw
+
+  # mongo-express, 客户端工具
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: always
+    links:
+      - mongo-db:mongodb #依赖，MongoDB先启动
+    depends_on:
+      - mongo-db #依赖，MongoDB先启动
+    ports:
+      - 27018:8081 #外部：内部, 外部访问：http://localhost:27018
+    environment:
+      ME_CONFIG_OPTIONS_EDITORTHEME: 3024-night
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin@123
+      ME_CONFIG_BASICAUTH_USERNAME: express
+      ME_CONFIG_BASICAUTH_PASSWORD: express@123
+
+
+#  web:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - 8080:5000
+#    environment:
+#      REDIS_HOST: redis
