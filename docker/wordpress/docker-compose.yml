@@ -32,7 +32,7 @@ services:
 
   wordpress:
     depends_on:
-      - db  #这里依赖上一个服务
+      - db  #这里依赖上一个服务，依赖的就是要先启动的
     image: wordpress:latest
     ports:
       - "8000:80" #容器外部:容器内部
