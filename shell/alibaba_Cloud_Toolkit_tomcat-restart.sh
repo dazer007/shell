@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+#适用于alibaba cloud toolkit 自动发布，这里重启linux tomcat脚本
+
 ## 1： 查看进程id,示例1
 ## echo `ps -ef | grep $CATALINA_HOME/bin/tomcat-juli.jar | grep -v grep | tr -s " "|cut -d" " -f2`
 ## 1： 查看进程id,示例2
