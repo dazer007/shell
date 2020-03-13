@@ -27,8 +27,8 @@ services:
       - "./data/log/:/usr/local/openresty/nginx/logs"
     environment:
       TZ: Asia/Shanghai
-      #LINUX_HOST: $(ifconfig eth0|grep inet|awk '{print $2}')  #主机的ip,不同server需要修改；
-      LINUX_HOST: 10.75.19.241
+      #LINUX_HOST: $(ifconfig eth0|grep inet|awk '{print $2}')  #主机的ip,不同server需要修改；本机调试，每次电脑重启，也需要修改。
+      LINUX_HOST: 192.168.0.208
     networks:
       - front
 
@@ -48,18 +48,18 @@ services:
     container_name: eureka
     restart: unless-stopped
     depends_on:
-      - nginx
+      - iot-adminserver
     ports:
       - "8001:8080"
 
-#  iot-platform-core:
-#    image: hub.c.163.com/dazer1992/iot-platform-core:0.1
-#    container_name: iot-platform-core
-#    restart: always
-#    depends_on:
-#      - nginx
-#    ports:
-#      - "8002:8881"
+  iot-platform-core:
+    image: hub.c.163.com/dazer1992/iot-platform-core:0.1
+    container_name: iot
+    restart: unless-stopped
+    depends_on:
+      - iot-eureka
+    ports:
+      - "8002:8881"
 
 networks:
   front:
