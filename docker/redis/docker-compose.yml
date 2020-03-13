@@ -6,7 +6,7 @@ services:
   redis:
     image: redis:5.0.7-alpine
     container_name: redis
-    restart: always
+    restart: unless-stopped
     command: --appendonly yes #redis持久化开启，aof模式持久化需要手工开启
     ports:
       - 6379:6379 # 外部端口：内部端口
@@ -17,7 +17,7 @@ services:
   mongo-db:
     image: mongo:4.2
     container_name: mongo-db
-    restart: always
+    restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
@@ -48,7 +48,6 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin@123
       ME_CONFIG_BASICAUTH_USERNAME: express
       ME_CONFIG_BASICAUTH_PASSWORD: express@123
-
 
 #  web:
 #    build:

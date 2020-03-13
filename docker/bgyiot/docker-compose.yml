@@ -1,0 +1,57 @@
+# "docker-compose.yml"
+#前台运行打印日志：docker-compose up #前台运行一次
+#后台运行命令： docker-compose up -d   #如果只运行一次，就docker run; docker run
+#查看运行情况： docker-compose ps
+#停止运行：    docker-compose kill
+#查看日志：    docker-compose logs -f
+#查看日志：    docker-compose down #删除上次所有运行记录&停止，否则 docker-compose up,还是接着上次的运行记录 （这样下次使用docker-compose up时就一定会是新容器了）；
+#proxy_pass  http://[宿主机IP]:8000; 多个容器访问，ip问题。
+
+version: '3'
+services:
+  nginx:
+    image: nginx:1.14.2-alpine
+    ports:
+      - "80:80" #外部端口：内部端口
+      - 443:443
+    # 数据卷
+    volumes: #磁盘映射； 当前目录下面的data/conf.d映射到容器里面
+      # - "./data/conf.d:/etc/nginx/conf.d" #不使用这个，我们直接使用 根 nginx.conf
+      - "./data/conf:/etc/nginx"
+      - "./data/html:/usr/share/nginx/html"
+    networks:
+      - front
+
+  iot-adminserver:
+    image: hub.c.163.com/dazer1992/adminserver:0.01
+    container_name: adminserver
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    ports:
+      - "8000:8011"
+    networks:
+      front:
+
+  iot-eureka:
+    image: hub.c.163.com/dazer1992/iot-eureka:0.01
+    container_name: eureka
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    ports:
+      - "8001:8080"
+
+#  iot-platform-one-server:
+#    image: hub.c.163.com/dazer1992/iot-platform-one-server:0.1
+#    container_name: iot-platform-one-serve
+#    restart: unless-stopped
+#    depends_on:
+#      - nginx
+#    ports:
+#      - "8882:8881"
+
+
+networks:
+  front:
+  backend:

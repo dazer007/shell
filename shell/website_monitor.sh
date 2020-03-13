@@ -1,6 +1,6 @@
 #!/bin/bash
 # /usr/local/sh/website_monitor.sh
-#Ò»¸öÍøÕ¾·ÃÎÊÈı´Î£¬Èı´Î¶¼ÊÇÊ§°Ü£¬¾Í·¢ËÍ¾¯¸æÓÊ¼ş¸ø¹ÜÀíÔ±
+#ä¸€ä¸ªç½‘ç«™è®¿é—®10æ¬¡ï¼Œ10æ¬¡éƒ½æ˜¯å¤±è´¥ï¼Œå°±å‘é€è­¦å‘Šé‚®ä»¶ç»™ç®¡ç†å‘˜
 URL_LIST="https://shop.dfww.com.cn/bobo/login.html https://www.jl-media.cn/hiber/login.html www.baidu.com"
 for URL in $URL_LIST; do
     FAIL_COUNT=0
