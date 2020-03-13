@@ -7,18 +7,28 @@
 #查看日志：    docker-compose down #删除上次所有运行记录&停止，否则 docker-compose up,还是接着上次的运行记录 （这样下次使用docker-compose up时就一定会是新容器了）；
 #proxy_pass  http://[宿主机IP]:8000; 多个容器访问，ip问题。
 
+#如何在Nginx配置中使用OS环境变量？ https://cloud.tencent.com/developer/ask/150892/answer/262145
+#论Docker容器中的Nginx配置文件如何读取系统/容器的环境变量 https://blog.csdn.net/jiangqian6481/article/details/78310247
+#  Dockerfile与docker-compose设置环境变量 https://blog.csdn.net/ywk_hax/article/details/86531348
+
 version: '3'
 services:
   nginx:
-    image: nginx:1.14.2-alpine
+    image: openresty/openresty:1.15.8.2-6-centos   # https://hub.docker.com/r/openresty/openresty
+    #image: docker pull openresty/openresty:1.15.8.2-3-alpine    # https://hub.docker.com/r/openresty/openresty
     ports:
       - "80:80" #外部端口：内部端口
       - 443:443
     # 数据卷
     volumes: #磁盘映射； 当前目录下面的data/conf.d映射到容器里面
       # - "./data/conf.d:/etc/nginx/conf.d" #不使用这个，我们直接使用 根 nginx.conf
-      - "./data/conf:/etc/nginx"
-      - "./data/html:/usr/share/nginx/html"
+      - "./data/conf:/usr/local/openresty/nginx/conf"
+      - "./data/html:/usr/local/openresty/nginx/html"
+      - "./data/log/:/usr/local/openresty/nginx/logs"
+    environment:
+      TZ: Asia/Shanghai
+      #LINUX_HOST: $(ifconfig eth0|grep inet|awk '{print $2}')  #主机的ip,不同server需要修改；
+      LINUX_HOST: 10.75.19.241
     networks:
       - front
 
@@ -42,15 +52,14 @@ services:
     ports:
       - "8001:8080"
 
-#  iot-platform-one-server:
-#    image: hub.c.163.com/dazer1992/iot-platform-one-server:0.1
-#    container_name: iot-platform-one-serve
-#    restart: unless-stopped
+#  iot-platform-core:
+#    image: hub.c.163.com/dazer1992/iot-platform-core:0.1
+#    container_name: iot-platform-core
+#    restart: always
 #    depends_on:
 #      - nginx
 #    ports:
-#      - "8882:8881"
-
+#      - "8002:8881"
 
 networks:
   front:

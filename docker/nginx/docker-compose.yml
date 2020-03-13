@@ -28,7 +28,7 @@
 version: '3'
 services:
   nginx:
-    image: nginx:1.14.2 #mini镜像，https://hub.docker.com/_/nginx
+    image: nginx:1.14.2-alpine #mini镜像，https://hub.docker.com/_/nginx
     # 端口映射
     ports:
       - "8000:80" #外部端口：内部端口
