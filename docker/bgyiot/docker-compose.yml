@@ -16,7 +16,8 @@
 version: '3.7'
 services:
   nginx:
-    image: openresty/openresty:1.15.8.2-6-centos   # https://hub.docker.com/r/openresty/openresty
+    image: openresty/openresty:1.13.6.2-1-centos
+    # https://hub.docker.com/r/openresty/openresty
     #image: docker pull openresty/openresty:1.15.8.2-3-alpine    # https://hub.docker.com/r/openresty/openresty
     ports:
       - "80:80" #外部端口：内部端口
