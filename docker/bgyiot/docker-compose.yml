@@ -5,6 +5,7 @@
 #停止运行：    docker-compose kill
 #查看日志：    docker-compose logs -f
 #查看日志：    docker-compose down #删除上次所有运行记录&停止，否则 docker-compose up,还是接着上次的运行记录 （这样下次使用docker-compose up时就一定会是新容器了）；
+#重新启动单个容器：docker-compose restart nginx
 #proxy_pass  http://[宿主机IP]:8000; 多个容器访问，ip问题。
 
 #如何在Nginx配置中使用OS环境变量？ https://cloud.tencent.com/developer/ask/150892/answer/262145
@@ -36,9 +37,7 @@ services:
   iot-adminserver:
     image: hub.c.163.com/dazer1992/adminserver:0.01
     container_name: adminserver
-    deploy:
-      restart_policy:
-        condition: on-failure
+    restart: unless-stopped
     depends_on:
       - nginx
     ports:
@@ -49,11 +48,8 @@ services:
   iot-eureka:
     image: hub.c.163.com/dazer1992/iot-eureka:0.01
     container_name: eureka
-    deploy:
-      restart_policy:
-        condition: on-failure
-    depends_on:private.key
-    full_chain.pem
+    restart: unless-stopped
+    depends_on:
       - iot-adminserver
     ports:
       - "8001:8080"
@@ -61,9 +57,7 @@ services:
   iot-platform-core:
     image: hub.c.163.com/dazer1992/iot-platform-core:0.1
     container_name: iot-platform
-    deploy:
-      restart_policy:
-        condition: on-failure
+    restart: unless-stopped
     depends_on:
       - iot-eureka
     ports:
