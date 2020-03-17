@@ -9,22 +9,23 @@
 
 #如何在Nginx配置中使用OS环境变量？ https://cloud.tencent.com/developer/ask/150892/answer/262145
 #论Docker容器中的Nginx配置文件如何读取系统/容器的环境变量 https://blog.csdn.net/jiangqian6481/article/details/78310247
-#  Dockerfile与docker-compose设置环境变量 https://blog.csdn.net/ywk_hax/article/details/86531348
+#Dockerfile与docker-compose设置环境变量 https://blog.csdn.net/ywk_hax/article/details/86531348
+# docker-compose.yml 官方编辑文档地址： https://docs.docker.com/compose/compose-file/
 
-version: '3'
+version: '3.7'
 services:
   nginx:
     image: openresty/openresty:1.15.8.2-6-centos   # https://hub.docker.com/r/openresty/openresty
     #image: docker pull openresty/openresty:1.15.8.2-3-alpine    # https://hub.docker.com/r/openresty/openresty
     ports:
       - "80:80" #外部端口：内部端口
-      - 443:443
+      - "443:443"
     # 数据卷
     volumes: #磁盘映射； 当前目录下面的data/conf.d映射到容器里面
-      # - "./data/conf.d:/etc/nginx/conf.d" #不使用这个，我们直接使用 根 nginx.conf
       - "./data/conf:/usr/local/openresty/nginx/conf"
       - "./data/html:/usr/local/openresty/nginx/html"
-      - "./data/log/:/usr/local/openresty/nginx/logs"
+      - "./data/log:/usr/local/openresty/nginx/logs"
+      - "./data/cert:/usr/local/openresty/cert/"
     environment:
       TZ: Asia/Shanghai
       #LINUX_HOST: $(ifconfig eth0|grep inet|awk '{print $2}')  #主机的ip,不同server需要修改；本机调试，每次电脑重启，也需要修改。
@@ -35,7 +36,9 @@ services:
   iot-adminserver:
     image: hub.c.163.com/dazer1992/adminserver:0.01
     container_name: adminserver
-    restart: unless-stopped
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       - nginx
     ports:
@@ -46,20 +49,28 @@ services:
   iot-eureka:
     image: hub.c.163.com/dazer1992/iot-eureka:0.01
     container_name: eureka
-    restart: unless-stopped
-    depends_on:
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:private.key
+    full_chain.pem
       - iot-adminserver
     ports:
       - "8001:8080"
 
   iot-platform-core:
     image: hub.c.163.com/dazer1992/iot-platform-core:0.1
-    container_name: iot
-    restart: unless-stopped
+    container_name: iot-platform
+    deploy:
+      restart_policy:
+        condition: on-failure
     depends_on:
       - iot-eureka
     ports:
       - "8002:8881"
+    networks:
+      - front
+      - backend
 
 networks:
   front:
