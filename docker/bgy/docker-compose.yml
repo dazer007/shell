@@ -4,6 +4,7 @@
 #查看运行情况： docker-compose ps
 #停止运行：    docker-compose kill
 #查看日志：    docker-compose logs -f
+#查看日志：    docker-compose logs -f --tail 50 iot-platform   查看iot-platform最后的50条
 #查看日志：    docker-compose down #删除上次所有运行记录&停止，否则 docker-compose up,还是接着上次的运行记录 （这样下次使用docker-compose up时就一定会是新容器了）；
 #重新启动单个容器：docker-compose restart nginx
 #proxy_pass  http://[宿主机IP]:8000; 多个容器访问，ip问题。
@@ -34,8 +35,13 @@ services:
       - "8001:8080"
 
   iot-platform:
-    image: hub.c.163.com/dazer1992/iot-platform:0.01
-    container_name: iot-platform
+    image: hub.c.163.com/dazer1992/iot-platform-core:0.01
+    container_name: iot-platform-core
+    volumes: #磁盘映射；解决容器内和容器外时间不一致的问题
+      - "/usr/share/zoneinfo/Asia/Shanghai:/usr/share/zoneinfo/Asia/Shanghai"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      TZ: Asia/Shanghai
     restart: unless-stopped
     ports:
       - "8002:8881"
@@ -45,4 +51,5 @@ services:
 
 networks:
   front:
+
   backend:
