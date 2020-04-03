@@ -14,29 +14,56 @@
 #Dockerfile与docker-compose设置环境变量 https://blog.csdn.net/ywk_hax/article/details/86531348
 # docker-compose.yml 官方编辑文档地址： https://docs.docker.com/compose/compose-file/
 
+### http://10.104.16.46/   rancher访问地址
+### http://iot.ourslook.com:8080/adminserver
+### https://iot.ourslook.com/iot-license
+### https://iot.ourslook.com/eureka/
+### https://iot.ourslook.com/iot-platform-base/swagger-ui.html
+
 version: '3.7'
 services:
   iot-adminserver:
-    image: hub.c.163.com/dazer1992/adminserver:0.01
+    image: hub.c.163.com/dazer1992/adminserver:latest
     container_name: adminserver
     restart: unless-stopped
     ports:
-      - "8000:8011"
+      - "8080:8080"
+    networks:
+      front:
+
+  iot-zuul:
+    image: hub.c.163.com/dazer1992/iot-zuul:latest
+    container_name: iot-zuul
+    restart: unless-stopped
+    ports:
+      - "8010:8010"
     networks:
       front:
 
   iot-eureka:
-    image: hub.c.163.com/dazer1992/iot-eureka:0.01
+    image: hub.c.163.com/dazer1992/iot-eureka
     container_name: eureka
     restart: unless-stopped
     depends_on:
       - iot-adminserver
     ports:
-      - "8001:8080"
+      - "8001:8000"
+
+  iot-license:
+    image: hub.c.163.com/dazer1992/iot-license:latest
+    container_name: iot-license
+    environment:
+      TZ: Asia/Shanghai
+    restart: unless-stopped
+    ports:
+      - "8988:8988"
+    networks:
+      - front
+      - backend
 
   iot-platform:
-    image: hub.c.163.com/dazer1992/iot-platform-core:0.01
-    container_name: iot-platform-core
+    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
+    container_name: iot-platform-base
     volumes: #磁盘映射；解决容器内和容器外时间不一致的问题
       - "/usr/share/zoneinfo/Asia/Shanghai:/usr/share/zoneinfo/Asia/Shanghai"
       - "/etc/localtime:/etc/localtime:ro"
@@ -48,6 +75,7 @@ services:
     networks:
       - front
       - backend
+
 
 networks:
   front:
