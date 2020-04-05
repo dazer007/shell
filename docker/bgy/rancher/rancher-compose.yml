@@ -1,0 +1,26 @@
+version: '2'
+services:
+  platform-base:
+    scale: 1
+    start_on_create: true
+  iot-eureka:
+    scale: 1
+    start_on_create: true
+  adminserver:
+    scale: 1
+    start_on_create: true
+  iot-zuul:
+    scale: 1
+    start_on_create: true
+  iot-platform-syslog:
+    scale: 1
+    start_on_create: true
+  iot-platform-alarmlinkage:
+    scale: 1
+    start_on_create: true
+  iot-platform-schedulejob:
+    scale: 1
+    start_on_create: true
+  iot-license:
+    scale: 1
+    start_on_create: true

@@ -76,6 +76,14 @@ services:
       - front
       - backend
 
+  iot-platform-alarmlinkage:
+    image: hub.c.163.com/dazer1992/iot-platform-alarmlinkage
+    container_name: iot-platform-alarmlinkage
+    environment:
+      TZ: Asia/Shanghai
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
 
 networks:
   front:
