@@ -1,6 +1,27 @@
 version: '2'
 services:
-  platform-base:
+  iot-gateway-schedulejob:
+    scale: 1
+    start_on_create: true
+  iot-zuul:
+    scale: 1
+    start_on_create: true
+  iot-gateway-base:
+    scale: 1
+    start_on_create: true
+  iot-gateway-syslog:
+    scale: 1
+    start_on_create: true
+  iot-platform-syslog:
+    scale: 1
+    start_on_create: true
+  iot-license:
+    scale: 1
+    start_on_create: true
+  iot-platform-base:
+    scale: 1
+    start_on_create: true
+  mw-light-kuaisicong:
     scale: 1
     start_on_create: true
   iot-eureka:
@@ -9,18 +30,15 @@ services:
   adminserver:
     scale: 1
     start_on_create: true
-  iot-zuul:
-    scale: 1
-    start_on_create: true
-  iot-platform-syslog:
+  mw-airconditioning-hailin:
     scale: 1
     start_on_create: true
   iot-platform-alarmlinkage:
     scale: 1
     start_on_create: true
-  iot-platform-schedulejob:
+  iot-gateway-alarmlinkage:
     scale: 1
     start_on_create: true
-  iot-license:
+  iot-platform-schedulejob:
     scale: 1
     start_on_create: true
