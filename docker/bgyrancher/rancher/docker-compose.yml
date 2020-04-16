@@ -18,6 +18,8 @@ services:
     environment:
       spring.profiles.active: test
     stdin_open: true
+    volumes:
+    - /usr/local/logs/zuul:/logs/iot/
     tty: true
     ports:
     - 8010:8010/tcp
