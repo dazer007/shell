@@ -1,0 +1,133 @@
+version: '2'
+services:
+  iot-platform-base:
+    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-platform-base:/logs/iot/
+    tty: true
+    ports:
+    - 8881:8881/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-light-kuaisicong:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-light-kuaisicong:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    network_mode: host
+    volumes:
+    - /usr/local/logs/mw-light-kuaisicong:/logs/iot/
+    tty: true
+    ports:
+    - 8901:8901/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-automobile-baidu:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-automobile-baidu:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    network_mode: host
+    volumes:
+    - /usr/local/logs/mw-automobile-baidu:/logs/iot/
+    tty: true
+    ports:
+    - 8910:8910/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-eureka:
+    image: hub.c.163.com/dazer1992/iot-eureka
+    stdin_open: true
+    tty: true
+    ports:
+    - 8000:8000/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  adminserver:
+    image: hub.c.163.com/dazer1992/adminserver:latest
+    stdin_open: true
+    tty: true
+    ports:
+    - 8080:8080/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-zuul:
+    image: hub.c.163.com/dazer1992/iot-zuul:latest
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/zuul:/logs/iot/
+    tty: true
+    ports:
+    - 8010:8010/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-airconditioning-hailin:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-airconditioning-hailin:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    network_mode: host
+    volumes:
+    - /usr/local/logs/mw-airconditioning-hailin:/logs/iot/
+    tty: true
+    ports:
+    - 8902:8902/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-platform-syslog:
+    image: hub.c.163.com/dazer1992/iot-platform-syslog:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    tty: true
+    ports:
+    - 8887:8887/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-platform-alarmlinkage:
+    image: hub.c.163.com/dazer1992/iot-platform-alarmlinkage:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    network_mode: host
+    tty: true
+    ports:
+    - 8888:8888/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-platform-schedulejob:
+    image: hub.c.163.com/dazer1992/iot-platform-schedulejob:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    tty: true
+    ports:
+    - 8889:8889/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-face-wangfeng:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-face-wangfeng:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    network_mode: host
+    volumes:
+    - /usr/local/logs/mw-face-wangfeng:/logs/iot/
+    tty: true
+    ports:
+    - 8904:8904/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-license:
+    image: hub.c.163.com/dazer1992/iot-license:latest
+    stdin_open: true
+    tty: true
+    ports:
+    - 8988:8988/tcp
+    labels:
+      io.rancher.container.pull_image: always
