@@ -8,34 +8,6 @@ services:
     volumes:
     - /usr/local/logs/iot-platform-base:/logs/iot/
     tty: true
-    ports:
-    - 8881:8881/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  mw-light-kuaisicong:
-    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-light-kuaisicong:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    network_mode: host
-    volumes:
-    - /usr/local/logs/mw-light-kuaisicong:/logs/iot/
-    tty: true
-    ports:
-    - 8901:8901/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  mw-automobile-baidu:
-    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-automobile-baidu:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    network_mode: host
-    volumes:
-    - /usr/local/logs/mw-automobile-baidu:/logs/iot/
-    tty: true
-    ports:
-    - 8910:8910/tcp
     labels:
       io.rancher.container.pull_image: always
   iot-eureka:
@@ -66,17 +38,14 @@ services:
     - 8010:8010/tcp
     labels:
       io.rancher.container.pull_image: always
-  mw-airconditioning-hailin:
-    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-airconditioning-hailin:0.01
+  iot-platform-base-2:
+    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
     environment:
       spring.profiles.active: test
     stdin_open: true
-    network_mode: host
     volumes:
-    - /usr/local/logs/mw-airconditioning-hailin:/logs/iot/
+    - /usr/local/logs/iot-platform-base:/logs/iot/
     tty: true
-    ports:
-    - 8902:8902/tcp
     labels:
       io.rancher.container.pull_image: always
   iot-platform-syslog:
@@ -100,6 +69,15 @@ services:
     - 8888:8888/tcp
     labels:
       io.rancher.container.pull_image: always
+  iot-platform-base-lbs:
+    image: rancher/lb-service-haproxy:v0.9.13
+    ports:
+    - 8881:8881/tcp
+    labels:
+      io.rancher.scheduler.affinity:host_label: host.name=test
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
   iot-platform-schedulejob:
     image: hub.c.163.com/dazer1992/iot-platform-schedulejob:0.01
     environment:
@@ -108,19 +86,6 @@ services:
     tty: true
     ports:
     - 8889:8889/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  mw-face-wangfeng:
-    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-face-wangfeng:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    network_mode: host
-    volumes:
-    - /usr/local/logs/mw-face-wangfeng:/logs/iot/
-    tty: true
-    ports:
-    - 8904:8904/tcp
     labels:
       io.rancher.container.pull_image: always
   iot-license:

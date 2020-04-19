@@ -1,26 +1,26 @@
 version: '2'
 services:
-  iot-eureka:
+  mw-light-kuaisicong:
     scale: 1
     start_on_create: true
   iot-gateway-schedulejob:
     scale: 1
     start_on_create: true
-  middleware-video-haikang:
-    scale: 1
-    start_on_create: true
-  iot-zuul:
+  iot-gateway-zuul:
     scale: 1
     start_on_create: true
   iot-gateway-base:
     scale: 1
     start_on_create: true
+  mw-airconditioning-hailin:
+    scale: 1
+    start_on_create: true
   iot-gateway-syslog:
     scale: 1
     start_on_create: true
-  iot-gateway-alarmlinkage:
+  iot-gateway-eureka:
     scale: 1
     start_on_create: true
-  mw-face-wangfeng:
+  iot-gateway-alarmlinkage:
     scale: 1
     start_on_create: true

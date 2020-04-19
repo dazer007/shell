@@ -3,12 +3,6 @@ services:
   iot-platform-base:
     scale: 1
     start_on_create: true
-  mw-light-kuaisicong:
-    scale: 1
-    start_on_create: true
-  mw-automobile-baidu:
-    scale: 1
-    start_on_create: true
   iot-eureka:
     scale: 1
     start_on_create: true
@@ -18,7 +12,7 @@ services:
   iot-zuul:
     scale: 1
     start_on_create: true
-  mw-airconditioning-hailin:
+  iot-platform-base-2:
     scale: 1
     start_on_create: true
   iot-platform-syslog:
@@ -27,10 +21,26 @@ services:
   iot-platform-alarmlinkage:
     scale: 1
     start_on_create: true
-  iot-platform-schedulejob:
+  iot-platform-base-lbs:
     scale: 1
     start_on_create: true
-  mw-face-wangfeng:
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: http
+        service: iot-platform-base
+        source_port: 8881
+        target_port: 8881
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
+  iot-platform-schedulejob:
     scale: 1
     start_on_create: true
   iot-license:
