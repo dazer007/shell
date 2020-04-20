@@ -1,27 +1,27 @@
 version: '2'
 services:
-  iot-platform-base:
+  mw-light-kuaisicong:
     scale: 1
     start_on_create: true
-  iot-eureka:
+  iot-gateway-schedulejob:
     scale: 1
     start_on_create: true
-  adminserver:
+  iot-gateway-zuul:
     scale: 1
     start_on_create: true
-  iot-zuul:
+  iot-gateway-base:
     scale: 1
     start_on_create: true
-  iot-platform-base-2:
+  mw-airconditioning-hailin:
     scale: 1
     start_on_create: true
-  iot-platform-syslog:
+  iot-gateway-syslog:
     scale: 1
     start_on_create: true
-  iot-platform-alarmlinkage:
+  iot-gateway-eureka:
     scale: 1
     start_on_create: true
-  iot-platform-base-lbs:
+  lbs-gateway-zuul:
     scale: 1
     start_on_create: true
     lb_config:
@@ -29,20 +29,17 @@ services:
       port_rules:
       - priority: 1
         protocol: http
-        service: iot-platform-base
-        source_port: 8881
-        target_port: 8881
+        service: iot-gateway-zuul
+        source_port: 80
+        target_port: 8010
     health_check:
-      healthy_threshold: 2
       response_timeout: 2000
+      healthy_threshold: 2
       port: 42
       unhealthy_threshold: 3
       initializing_timeout: 60000
       interval: 2000
       reinitializing_timeout: 60000
-  iot-platform-schedulejob:
-    scale: 1
-    start_on_create: true
-  iot-license:
+  iot-gateway-alarmlinkage:
     scale: 1
     start_on_create: true

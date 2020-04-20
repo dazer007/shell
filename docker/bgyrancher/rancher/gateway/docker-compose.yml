@@ -1,98 +1,102 @@
 version: '2'
 services:
-  iot-platform-base:
-    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
+  mw-light-kuaisicong:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-light-kuaisicong:0.01
+    environment:
+      iot.link.params: '%7B%22linkParams%22%3A%22%7B%5C%22port%5C%22%3A%5C%2251001%5C%22%7D%22%2C%22netAddress%22%3A%2210.108.45.201%22%2C%22protocol%22%3A%22TCP%22%2C%22siId%22%3A%2292345656760336384%22%7D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-light-kuaisicong:/logs/iot/
+    ports:
+    - 8901:8901/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-schedulejob:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/iot-gateway-schedulejob:0.01
     environment:
       spring.profiles.active: test
     stdin_open: true
     volumes:
-    - /usr/local/logs/iot-platform-base:/logs/iot/
-    tty: true
-    labels:
-      io.rancher.container.pull_image: always
-  iot-eureka:
-    image: hub.c.163.com/dazer1992/iot-eureka
-    stdin_open: true
-    tty: true
-    ports:
-    - 8000:8000/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  adminserver:
-    image: hub.c.163.com/dazer1992/adminserver:latest
-    stdin_open: true
-    tty: true
-    ports:
-    - 8080:8080/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  iot-zuul:
-    image: hub.c.163.com/dazer1992/iot-zuul:latest
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    volumes:
-    - /usr/local/logs/zuul:/logs/iot/
-    tty: true
-    ports:
-    - 8010:8010/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  iot-platform-base-2:
-    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    volumes:
-    - /usr/local/logs/iot-platform-base:/logs/iot/
-    tty: true
-    labels:
-      io.rancher.container.pull_image: always
-  iot-platform-syslog:
-    image: hub.c.163.com/dazer1992/iot-platform-syslog:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    tty: true
-    ports:
-    - 8887:8887/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  iot-platform-alarmlinkage:
-    image: hub.c.163.com/dazer1992/iot-platform-alarmlinkage:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    network_mode: host
-    tty: true
-    ports:
-    - 8888:8888/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  iot-platform-base-lbs:
-    image: rancher/lb-service-haproxy:v0.9.13
-    ports:
-    - 8881:8881/tcp
-    labels:
-      io.rancher.scheduler.affinity:host_label: host.name=test
-      io.rancher.container.agent.role: environmentAdmin,agent
-      io.rancher.container.agent_service.drain_provider: 'true'
-      io.rancher.container.create_agent: 'true'
-  iot-platform-schedulejob:
-    image: hub.c.163.com/dazer1992/iot-platform-schedulejob:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
+    - /usr/local/logs/iot-gateway-schedulejob:/logs/iot/
     tty: true
     ports:
     - 8889:8889/tcp
     labels:
       io.rancher.container.pull_image: always
-  iot-license:
-    image: hub.c.163.com/dazer1992/iot-license:latest
+  iot-gateway-zuul:
+    image: hub.c.163.com/dazer1992/iot-zuul:latest
+    environment:
+      spring.profiles.active: gateway
     stdin_open: true
     tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-base:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/iot-gateway-base:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-base:/logs/iot/
+    tty: true
     ports:
-    - 8988:8988/tcp
+    - 8991:8991/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-airconditioning-hailin:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/mw-airconditioning-hailin:0.01
+    environment:
+      iot.link.params: '%7B%22linkParams%22%3A%22%7B%5C%22port%5C%22%3A%5C%2251001%5C%22%7D%22%2C%22netAddress%22%3A%2210.108.45.201%22%2C%22protocol%22%3A%22TCP%22%2C%22siId%22%3A%2292345656760336384%22%7D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-airconditioning-hailin:/logs/iot/
+    ports:
+    - 8902:8902/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-syslog:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/iot-gateway-syslog:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-syslog:/logs/iot/
+    tty: true
+    ports:
+    - 8993:8993/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-eureka:
+    image: hub.c.163.com/dazer1992/iot-eureka
+    environment:
+      spring.profiles.active: gateway
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-eureka:/logs/iot/
+    tty: true
+    ports:
+    - 8000:8000/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  lbs-gateway-zuul:
+    image: rancher/lb-service-haproxy:v0.9.13
+    ports:
+    - 80:80/tcp
+    labels:
+      io.rancher.scheduler.affinity:host_label: host.name=prod
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+  iot-gateway-alarmlinkage:
+    image: registry.cn-shenzhen.aliyuncs.com/dazer/iot-gateway-alarmlinkage:0.01
+    environment:
+      spring.profiles.active: test
+      iot.link.params: '%7B%22siId%22%3A7991195836%2C%22netAddress%22%3A%22192.168.1.1%22%2C%22protocol%22%3A%22http%22%2C%22linkParams%22%3A%7B%22userName%22%3A%22aaa%22%2C%22passWord%22%3A%22123456%22%7D%7D'
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-alarmlinkage:/logs/iot/
+    tty: true
+    ports:
+    - 8992:8992/tcp
     labels:
       io.rancher.container.pull_image: always
