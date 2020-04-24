@@ -3,9 +3,6 @@ services:
   iot-gateway-schedulejob:
     scale: 1
     start_on_create: true
-  mw-internetbehavior-sangfor:
-    scale: 1
-    start_on_create: true
   mw-informationpublish-chinashine:
     scale: 1
     start_on_create: true
@@ -18,7 +15,7 @@ services:
   iot-gateway-syslog:
     scale: 1
     start_on_create: true
-  mw-face-wangfeng:
+  mw-carpark-jiehun:
     scale: 1
     start_on_create: true
   mw-light-kuaisicong:
@@ -28,6 +25,9 @@ services:
     scale: 1
     start_on_create: true
   mw-airconditioning-hailin:
+    scale: 1
+    start_on_create: true
+  mw-visualintercom-taichuan:
     scale: 1
     start_on_create: true
   mw-video-haikang:
