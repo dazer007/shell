@@ -1,17 +1,90 @@
 # auto-del-x-days-ago-log.sh
-# linux  É¾³ıÈÕÖ¾ÎÄ¼ş
-# 1£ºÉ¾³ıËùÓĞµÄtomcat³¬¹ı1ÌìµÄ*.logÈÕÖ¾
-  find /usr/local/tomcat8/logs/ -mtime +1 -type f -name '*.log' -exec rm -rf {} \;
-  find /usr/local/tomcat8/logs/ -mtime +1 -type f -name '*.txt' -exec rm -rf {} \;
-  find /usr/local/tomcat8/logs/ -mtime +1 -type f -name '*.out' -exec rm -rf {} \;
-  find /usr/local/tomcat8-8081/bin/logs/mall/ -mtime +5 -type f -name '*.gz' -exec rm -rf {} \; 
+# linux  åˆ é™¤æ—¥å¿—æ–‡ä»¶
+# 1ï¼šåˆ é™¤æ‰€æœ‰çš„tomcatè¶…è¿‡1å¤©çš„*.logæ—¥å¿—
 
-  find /usr/local/tomcat8-8081/logs/ -mtime +1 -type f -name '*.log' -exec rm -rf {} \;
-  find /usr/local/tomcat8-8081/logs/ -mtime +1 -type f -name '*.txt' -exec rm -rf {} \;
-  find /usr/local/tomcat8-8081/logs/ -mtime +1 -type f -name '*.out' -exec rm -rf {} \;
-  find /usr/local/tomcat8-8081/bin/logs/mall/ -mtime +5 -type f -name '*.gz' -exec rm -rf {} \; 
-# 2£ºÉ¾³ıËùÓĞqcuredb_¿ªÍ·µÄÈÕÖ¾ÎÄ¼ş
-find /data/db_backup/ -mtime +2 -name "*.sql.zip" -exec rm -rf {} \;  
-# 3£ºÉ¾³ıËùÓĞÀàĞÍÎÄ¼ş°üº¬ÎÄ¼ş¼Ğ nginx ÈÕÖ¾£» * ±È½ÏÎ£ÏÕ£¬É¾³ıÎÄ¼ş¼Ğ »òÕß ²»ÊÇ ÈÕÖ¾ÎÄ¼şÒ²»á±»ÇåÀí
-find /usr/local/nginx/logs -mtime +10 -name "*.log" -exec rm -rf {} \;
+find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/iot-gateway-base/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-base/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-base -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/iot-gateway-schedulejob/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-schedulejob/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-schedulejob/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/iot-gateway-syslog/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-syslog/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-gateway-syslog/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+
+find /usr/local/logs/mw-airconditioning-hailin/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-airconditioning-hailin/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-airconditioning-hailin/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-automobile-baidu/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-automobile-baidu/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-automobile-baidu/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-bus-wanfeng/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-bus-wanfeng/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-bus-wanfeng/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-carpark-jiehun/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-carpark-jiehun/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-carpark-jiehun/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-face-wangfeng/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-face-wangfeng/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-face-wangfeng/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-informationpublish-chinashine/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-informationpublish-chinashine/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-informationpublish-chinashine/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-internetbehavior-sangfor/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-internetbehavior-sangfor/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-internetbehavior-sangfor/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-light-kuaisicong/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-light-kuaisicong/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-light-kuaisicong/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-soilirrigation-splant/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-soilirrigation-splant/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-soilirrigation-splant/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-video-haikang/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-video-haikang/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-video-haikang/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-visualintercom-taichuan/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-visualintercom-taichuan/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-visualintercom-taichuan/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/mw-wifi-huawei/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/mw-wifi-huawei/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/mw-wifi-huawei/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+find /usr/local/logs/iot-platform-base/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+find /usr/local/logs/iot-platform-base/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/logs/iot-platform-base/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+#find /usr/local/logs/iot-platform-syslog/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+#find /usr/local/logs/iot-platform-syslog/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+#find /usr/local/logs/iot-platform-syslog/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+#find /usr/local/logs/iot-platform-alarmlinkage/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
+#find /usr/local/logs/iot-platform-alarmlinkage/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+#find /usr/local/logs/iot-platform-alarmlinkage/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
+
+# 2ï¼šåˆ é™¤æ‰€æœ‰qcuredb_å¼€å¤´çš„æ—¥å¿—æ–‡ä»¶
+#find /data/db_backup/ -mtime +10 -name "*.sql.zip" -exec rm -rf {} \;
+# 3ï¼šåˆ é™¤æ‰€æœ‰ç±»å‹æ–‡ä»¶åŒ…å«æ–‡ä»¶å¤¹ nginx æ—¥å¿—ï¼› * æ¯”è¾ƒå±é™©ï¼Œåˆ é™¤æ–‡ä»¶å¤¹ æˆ–è€… ä¸æ˜¯ æ—¥å¿—æ–‡ä»¶ä¹Ÿä¼šè¢«æ¸…ç†
+#find /usr/local/nginx/logs -mtime +2 -name "*.log" -exec rm -rf {} \;
 
