@@ -26,6 +26,16 @@ services:
     - 8080:8080/tcp
     labels:
       io.rancher.container.pull_image: always
+  iot-platform-base-2:
+    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-platform-base:/logs/iot/
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
   iot-zuul:
     image: hub.c.163.com/dazer1992/iot-zuul:latest
     environment:
@@ -36,16 +46,6 @@ services:
     tty: true
     ports:
     - 8010:8010/tcp
-    labels:
-      io.rancher.container.pull_image: always
-  iot-platform-base-2:
-    image: hub.c.163.com/dazer1992/iot-platform-base:0.01
-    environment:
-      spring.profiles.active: test
-    stdin_open: true
-    volumes:
-    - /usr/local/logs/iot-platform-base:/logs/iot/
-    tty: true
     labels:
       io.rancher.container.pull_image: always
   iot-platform-syslog:
@@ -94,5 +94,15 @@ services:
     tty: true
     ports:
     - 8988:8988/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-platform-upperapp:
+    image: hub.c.163.com/dazer1992/iot-platform-upperapp:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    tty: true
+    ports:
+    - 8882:8882/tcp
     labels:
       io.rancher.container.pull_image: always

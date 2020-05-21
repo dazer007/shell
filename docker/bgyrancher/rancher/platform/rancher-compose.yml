@@ -9,10 +9,10 @@ services:
   adminserver:
     scale: 1
     start_on_create: true
-  iot-zuul:
+  iot-platform-base-2:
     scale: 1
     start_on_create: true
-  iot-platform-base-2:
+  iot-zuul:
     scale: 1
     start_on_create: true
   iot-platform-syslog:
@@ -32,6 +32,11 @@ services:
         service: iot-platform-base
         source_port: 8881
         target_port: 8881
+      - priority: 2
+        protocol: http
+        service: iot-platform-base-2
+        source_port: 8881
+        target_port: 8881
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
@@ -39,10 +44,14 @@ services:
       unhealthy_threshold: 3
       initializing_timeout: 60000
       interval: 2000
+      strategy: recreate
       reinitializing_timeout: 60000
   iot-platform-schedulejob:
     scale: 1
     start_on_create: true
   iot-license:
+    scale: 1
+    start_on_create: true
+  iot-platform-upperapp:
     scale: 1
     start_on_create: true
