@@ -1,0 +1,15 @@
+version: '2'
+services:
+  jenkins:
+    image: jenkins/jenkins:2.199-alpine
+    stdin_open: true
+    volumes:
+    - /usr/local/jenkins_volume/jenkins_home:/var/jenkins_home
+    - /usr/bin/docker:/var/bin/docker
+    - /var/run/docker.sock:/var/run/docker.sock
+    tty: true
+    ports:
+    - 30000:8080/tcp
+    - 30001:50000/tcp
+    labels:
+      io.rancher.container.pull_image: always
