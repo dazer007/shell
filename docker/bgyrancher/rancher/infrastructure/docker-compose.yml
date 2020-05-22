@@ -9,7 +9,7 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     tty: true
     ports:
-    - 30000:8080/tcp
+    - 8989:8080/tcp
     - 30001:50000/tcp
     labels:
       io.rancher.container.pull_image: always
