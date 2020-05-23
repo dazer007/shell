@@ -1,5 +1,15 @@
 version: '2'
 services:
+  registry:
+    image: registry:latest
+    stdin_open: true
+    volumes:
+    - /usr/local/docker_volume/registry:/var/lib/registry
+    tty: true
+    ports:
+    - 5000:5000/tcp
+    labels:
+      io.rancher.container.pull_image: always
   jenkins:
     image: jenkins/jenkins:2.199-alpine
     stdin_open: true
