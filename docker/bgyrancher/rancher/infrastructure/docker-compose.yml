@@ -1,5 +1,6 @@
 version: '2'
 services:
+  # docker私有仓库
   registry:
     image: registry:latest
     stdin_open: true
@@ -10,19 +11,20 @@ services:
       - 5000:5000/tcp
     labels:
       io.rancher.container.pull_image: always
-  jenkins:
+  jenkins: #docker rancher jenkins
     privileged: true
     image: jenkins/jenkins:2.199-alpine
     stdin_open: true
     volumes:
-      - /usr/local/jenkins_volume/jenkins_home:/var/jenkins_home
-      - /usr/bin/docker:/var/bin/docker
+      - /usr/local/jenkins_volume/jenkins_home:/var/jenkins_home  #持久化jenkins目录；chmod -R 3000:3000 /usr/local/jenkins_volume/jenkins_home
+      - /usr/bin/docker:/var/bin/docker #dockr执行命令
       - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/alternatives/:/var/java
-      - /etc/localtime:/etc/localtime
+      - /etc/alternatives/:/var/java #java 环境
+      - /etc/localtime:/etc/localtime #时间同步
     tty: true
     ports:
       - 8989:8080/tcp
       - 30001:50000/tcp
+    user: root #指定root用户执行，防止出现权限不走问题。
     labels:
       io.rancher.container.pull_image: always
