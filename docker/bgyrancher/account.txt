@@ -1,3 +1,8 @@
 rancher地址：http://10.104.16.46/
-网关账号：admin/admin123@
-平台账号：platform/platform
+
+http://jenkins.ityun.ltd:8989/ jenkins/jenkins
+http://jenkins.ityun.ltd:5000  docker 仓库
+
+网关账号 admin/admin123@ C97D5E98C8C822B64038/nUKDAhUo4YCN7Cs23Ky6YogyEbuYr2x1CNPT1SvP
+平台账号 platform/platform 5D327A6D5BB8E92A0A9F/P5jW4Y2rYesaVLwWT6eP25pCe9BVtiWzGjGGSHct
+打包账号 jenkins/jenkins
