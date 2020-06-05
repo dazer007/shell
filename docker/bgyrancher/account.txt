@@ -1,8 +1,30 @@
-rancher地址：http://10.104.16.46/
+rancher地址：http://10.104.16.46/   外网：http://rancher.ityun.ltd/
 
-http://jenkins.ityun.ltd:8989/ jenkins/jenkins
+http://jenkins.ityun.ltd:8989/ jenkins/jenkins 内网：http://10.104.16.46:8989
 http://jenkins.ityun.ltd:5000  docker 仓库
 
 网关账号 admin/admin123@ C97D5E98C8C822B64038/nUKDAhUo4YCN7Cs23Ky6YogyEbuYr2x1CNPT1SvP
 平台账号 platform/platform 5D327A6D5BB8E92A0A9F/P5jW4Y2rYesaVLwWT6eP25pCe9BVtiWzGjGGSHct
 打包账号 jenkins/jenkins
+
+
+IOT服务器最低配置
+4C、32G、200G硬盘、linux centos 7.4+最新
+
+端口的开放
+http: 80、443、
+mysql: 3306
+mongodb: 47071
+rabbitmq:5672
+redis:6379
+docker registry:5000
+jenkins:8989
+rancher:9000
+其他web端口:8000、8080、8010、8888
+
+域名有的话，最好给四个都映射到一个阿里云公网ip,没有也可不要
+iot.xxx.xxx
+registry.xxx.xxx
+rancher.xxx.xxx
+jenkins.xxx.xxx
+
