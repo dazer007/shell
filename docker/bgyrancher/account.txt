@@ -12,6 +12,9 @@ IOT服务器最低配置
 4C、32G、200G硬盘、linux centos 7.4+最新
 
 端口的开放
+远程端口: 22、
+ftp端口: 21、
+ftp被动模式pass端口段: 31000/31010
 http: 80、443、
 mysql: 3306
 mongodb: 47071
