@@ -1,0 +1,232 @@
+version: '2'
+services:
+  mw-automobile-baidu:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-automobile-baidu:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22accessKeyId%5C%22%3A%5C%22bq1swizl0j1q4ybwofcrf9mdngbn1pvf%5C%22%2C%5C%22secretAccessKey%5C%22%3A%5C%22uzpvtc970dtgf3esyeayctkmkggr1i9h%5C%22%2C%5C%22appId%5C%22%3A%5C%2210%5C%22%2C%5C%22vehicleStatusUrl%5C%22%3A%5C%22%2Fopenapi%2Fminibus%2Fv2%2Fvehicle%2Fstatus%5C%22%7D%22%2C%22netAddress%22%3A%22https%3A%2F%2Fcloud.apollo.auto%22%2C%22protocol%22%3A%22https%22%2C%22siId%22%3A%2292337523912605696%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-automobile-baidu:/logs/iot/
+    ports:
+    - 8910:8910/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-schedulejob:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-schedulejob:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-schedulejob:/logs/iot/
+    tty: true
+    ports:
+    - 8889:8889/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-internetbehavior-sangfor:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-internetbehavior-sangfor:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22cpuUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fcpu-usage%5C%22%2C%5C%22memUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fmem-usage%5C%22%2C%5C%22diskUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fdisk-usage%5C%22%2C%5C%22onlineUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fonline-user%5C%22%2C%5C%22sessionUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fsession-num%5C%22%2C%5C%22throughputUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fthroughput%3F_method%3DGET%5C%22%2C%5C%22userRankUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fuser-rank%3F_method%3DGET%5C%22%2C%5C%22appRankUrl%5C%22%3A%5C%22http%3A%2F%2F10.100.0.2%3A9999%2Fv1%2Fstatus%2Fapp-rank%3F_method%3DGET%5C%22%2C%5C%22token%5C%22%3A%5C%22thbgy2020%40%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2F10.100.0.2%3A9999%2F%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2292268836446797824%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-internetbehavior-sangfor:/logs/iot/
+    ports:
+    - 8906:8906/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-informationpublish-chinashine:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-informationpublish-chinashine:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22deviceUrl%5C%22%3A%5C%22http%3A%2F%2F10.105.0.71%2Fadmin%2Fopen%2Fshinedevice%2Fdevicelist%2F%3Fpage%3D1%26limit%3D100%26groupidlist%3D-1%26screendirect%3D-1%26selected%3D%5C%22%2C%5C%22screenshotUrl%5C%22%3A%5C%22http%3A%2F%2F10.105.0.71%2Fadmin%2Fopen%2Fshinedevice%2Fscreenshot%2F%5C%22%2C%5C%22openUrl%5C%22%3A%5C%22http%3A%2F%2F10.105.0.71%2Fadmin%2Fopen%2Fshinedevice%2Fopenscreen%2F%5C%22%2C%5C%22closeUrl%5C%22%3A%5C%22http%3A%2F%2F10.105.0.71%2Fadmin%2Fopen%2Fshinedevice%2Fclosescreen%2F%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2F10.105.0.71%2F%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2293022756257398784%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-informationpublish-chinashine:/logs/iot/
+    ports:
+    - 8903:8903/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-zuul:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-zuul:latest
+    environment:
+      spring.profiles.active: gateway
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  mw-bus-wanfeng:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-bus-wanfeng:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22%5C%22%3A%5C%22%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2Fthbs.bgysmartcity.com%3A8085%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2295108314957873152%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-bus-wanfeng:/logs/iot/
+    ports:
+    - 8905:8905/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-base:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-base:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-base:/logs/iot/
+    tty: true
+    ports:
+    - 8991:8991/tcp
+    labels:
+      type: gateway
+      io.rancher.container.pull_image: always
+  iot-gateway-syslog:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-syslog:0.01
+    environment:
+      spring.profiles.active: test
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-syslog:/logs/iot/
+    tty: true
+    ports:
+    - 8993:8993/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-soilirrigation-splant:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-soilirrigation-splant:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22irrigationUrl%5C%22%3A%5C%22http%3A%2F%2FbApi.sPlant.com.cn%3A3001%2FApi%2FV3%2FGetWaterDevs%5C%22%2C%5C%22soilUrl%5C%22%3A%5C%22http%3A%2F%2FbApi.sPlant.com.cn%3A3001%2FApi%2FV3%2FGetDetectDevs%5C%22%2C%5C%22controlUrl%5C%22%3A%5C%22http%3A%2F%2FbApi.sPlant.com.cn%3A3001%2FApi%2FV3%2FSetWatering%5C%22%2C%5C%22recordUrl%5C%22%3A%5C%22http%3A%2F%2FbApi.sPlant.com.cn%3A3001%2FApi%2FV3%2FGetWateringRec%5C%22%2C%5C%22token%5C%22%3A%5C%22F187929C8DEEDB5208E0F41A5DFD6FC8C14AA19EDE02D34FCBDDA2B912BD6F00340B9875019C02E6DC1A8A0D206E3C236798977B763B9D94A75AB9C2811EA05F74548A7F2A1BA5484A76757069F69EC9B9654E4DE3B1BC466A11D7876C24B0703DB3DF888DB68D70731B3897990C972F09D6DC4DAACD5A4C%5C%22%2C%5C%22groupId%5C%22%3A%5C%22fc5e0e08-8035-11e8-b0cc-b8127e6b867b%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2FbApi.sPlant.com.cn%3A3001%2F%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2288367301472026624%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-soilirrigation-splant:/logs/iot/
+    ports:
+    - 8907:8907/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-face-wanfeng:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-face-wanfeng:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22%5C%22%3A%5C%22%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2Fthmj.bgysmartcity.com%3A8080%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2292302154198417408%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-face-wanfeng:/logs/iot/
+    ports:
+    - 8904:8904/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-light-kuaisicong:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-light-kuaisicong:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22port%5C%22%3A%5C%2251000%5C%22%2C%5C%22siId%5C%22%3A%5C%2292344738476195840%5C%22%7D%22%2C%22netAddress%22%3A%2210.108.45.201%22%2C%22protocol%22%3A%22TCP%22%2C%22siId%22%3A%2292344738476195840%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-light-kuaisicong:/logs/iot/
+    ports:
+    - 8901:8901/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-doorcontrol-jieshun:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-doorcontrol-jieshun:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22userName%5C%22%3A%5C%229999%5C%22%2C%5C%22passWord%5C%22%3A%5C%22123456%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2F10.105.0.43%3A8091%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2296930976424263680%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-doorcontrol-jieshun:/logs/iot/
+    ports:
+    - 8914:8914/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-wifi-huawei:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-wifi-huawei:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22port%5C%22%3A%5C%2232102%5C%22%2C%5C%22userName%5C%22%3A%5C%22openapi%5C%22%2C%5C%22passWord%5C%22%3A%5C%22huawei%40123%5C%22%2C%5C%22openIdUrl%5C%22%3A%5C%22%2Frest%2Fopenapi%2Fsm%2Fsession%5C%22%2C%5C%22apUrl%5C%22%3A%5C%22%2Frest%2Fopenapi%2Fnetwork%2Fwlan%2Faplist%5C%22%2C%5C%22acUrl%5C%22%3A%5C%22%2Frest%2Fopenapi%2Fnetwork%2Fwlan%2Faclist%5C%22%7D%22%2C%22netAddress%22%3A%2210.105.0.123%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%22110122189184827392%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-wifi-huawei:/logs/iot/
+    ports:
+    - 8911:8911/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-airconditioning-hailin:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-airconditioning-hailin:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22port%5C%22%3A%5C%2251001%5C%22%7D%22%2C%22netAddress%22%3A%2210.108.45.201%22%2C%22protocol%22%3A%22TCP%22%2C%22siId%22%3A%2292345656760336384%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-airconditioning-hailin:/logs/iot/
+    ports:
+    - 8902:8902/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-visualintercom-taichuan:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-visualintercom-taichuan:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22deviceUrl%5C%22%3A%5C%22http%3A%2F%2Frke.bgysmartcity.com%2Fapi%2FbgyApi%2Findex%2FGetEqStateList%5C%22%2C%5C%22recordUrl%5C%22%3A%5C%22http%3A%2F%2Frke.bgysmartcity.com%2Fapi%2FbgyApi%2Findex%2FOpendoorList%5C%22%2C%5C%22controlUrl%5C%22%3A%5C%22http%3A%2F%2Frke.bgysmartcity.com%2Fapi%2FbgyApi%2Findex%2FDevOpenLock%5C%22%2C%5C%22appId%5C%22%3A%5C%22ZrhyuOIDPjGCPGOu0q13g%3D%3D%5C%22%2C%5C%22appSecret%5C%22%3A%5C%22bb88df4fea7a452281a5da1eccbaae23%5C%22%2C%5C%22coId%5C%22%3A%5C%22CO19091600004%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2Frke.bgysmartcity.com%2F%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2286500761910902784%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-visualintercom-taichuan:/logs/iot/
+    ports:
+    - 8910:8910/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-zuul2:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-zuul:latest
+    environment:
+      spring.profiles.active: gateway
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  mw-video-haikang:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-video-haikang:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22ip%5C%22%3A%5C%2210.104.16.48%3A18081%5C%22%2C%5C%22userName%5C%22%3A%5C%22admin%5C%22%2C%5C%22passWord%5C%22%3A%5C%22Admin123%5C%22%7D%22%2C%22netAddress%22%3A%2210.104.16.48%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2299958769051500544%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-video-haikang:/logs/iot/
+    ports:
+    - 8909:8909/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  iot-gateway-eureka:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-eureka
+    environment:
+      spring.profiles.active: gateway
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-eureka:/logs/iot/
+    tty: true
+    ports:
+    - 8000:8000/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  lbs-gateway-zuul:
+    image: rancher/lb-service-haproxy:v0.9.13
+    ports:
+    - 80:80/tcp
+    labels:
+      io.rancher.scheduler.affinity:host_label: host.name=prod
+      io.rancher.container.agent.role: environmentAdmin,agent
+      io.rancher.container.agent_service.drain_provider: 'true'
+      io.rancher.container.create_agent: 'true'
+  iot-gateway-alarmlinkage:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-alarmlinkage:0.01
+    environment:
+      spring.profiles.active: test
+      iot.link.params: '%7B%22siId%22%3A7991195836%2C%22netAddress%22%3A%22192.168.1.1%22%2C%22protocol%22%3A%22http%22%2C%22linkParams%22%3A%7B%22userName%22%3A%22aaa%22%2C%22passWord%22%3A%22123456%22%7D%7D'
+    stdin_open: true
+    volumes:
+    - /usr/local/logs/iot-gateway-alarmlinkage:/logs/iot/
+    tty: true
+    ports:
+    - 8992:8992/tcp
+    labels:
+      io.rancher.container.pull_image: always
+  mw-carpark-jieshun:
+    image: iotrancher.bgysmartcity.com:5000/bgytonghu/mw-carpark-jieshun:0.01
+    environment:
+      iot.link.params: '%5B%7B%22linkParams%22%3A%22%7B%5C%22userName%5C%22%3A%5C%229999%5C%22%2C%5C%22passWord%5C%22%3A%5C%22123456%5C%22%7D%22%2C%22netAddress%22%3A%22http%3A%2F%2F10.108.8.248%3A8091%22%2C%22protocol%22%3A%22http%22%2C%22siId%22%3A%2296926432030097408%22%7D%5D'
+      spring.profiles.active: test
+    volumes:
+    - /usr/local/logs/mw-carpark-jieshun:/logs/iot/
+    ports:
+    - 8912:8912/tcp
+    labels:
+      io.rancher.container.pull_image: always
