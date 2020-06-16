@@ -1,17 +1,30 @@
 version: '2'
 services:
-  # docker私有仓库
+  docker-registry-ui:
+    image: joxit/docker-registry-ui
+    environment:
+      REGISTRY_URL: http://iotrancher.bgysmartcity.com:5000
+      REGISTRY_TITLE: iot honghu registry
+      URL: http://iotrancher.bgysmartcity.com:5001
+    stdin_open: true
+    tty: true
+    ports:
+      - 5001:80/tcp
+    labels:
+      io.rancher.container.pull_image: always
   registry:
     image: registry:latest
+    hostname: registry
     stdin_open: true
     volumes:
-      - /usr/local/docker_volume/registry:/var/lib/registry
+      - /usr/local2/docker_volume/registry:/var/lib/registry
+      - /usr/local2/docker_volume/registry/config/config.yml:/etc/docker/registry/config.yml
     tty: true
     ports:
       - 5000:5000/tcp
     labels:
       io.rancher.container.pull_image: always
-  jenkins: #docker rancher jenkins
+  jenkins: #docker rancher jenkins； 安装失败了。最后在主机上面安装的
     privileged: true
     image: jenkins/jenkins:2.199-alpine
     stdin_open: true
