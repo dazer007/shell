@@ -3,7 +3,8 @@ rancher地址：http://10.104.16.46/   外网：http://rancher.ityun.ltd/
 http://jenkins.ityun.ltd:8989/ jenkins/jenkins 内网：http://10.104.16.46:8989
 http://jenkins.ityun.ltd:5000  docker 仓库
 
-gateway网关账号 admin/admin123@ C97D5E98C8C822B64038/nUKDAhUo4YCN7Cs23Ky6YogyEbuYr2x1CNPT1SvP
+管理员账号：rancher/rancher202007
+gateway网关账号 gateway/gateway123@ C97D5E98C8C822B64038/nUKDAhUo4YCN7Cs23Ky6YogyEbuYr2x1CNPT1SvP
 平台账号 platform/platform 5D327A6D5BB8E92A0A9F/P5jW4Y2rYesaVLwWT6eP25pCe9BVtiWzGjGGSHct
 打包账号(基础设施账号iot-infrastructure) jenkins/jenkins
 
