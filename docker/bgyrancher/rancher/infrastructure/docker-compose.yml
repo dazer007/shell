@@ -3,41 +3,23 @@ services:
   docker-registry-ui:
     image: joxit/docker-registry-ui
     environment:
-      REGISTRY_URL: http://iotrancher.bgysmartcity.com:5000
       REGISTRY_TITLE: iot honghu registry
-      URL: http://iotrancher.bgysmartcity.com:5001
+      REGISTRY_URL: http://iotrancher.bgysmartcity.com:5000
+      URL: http://iotrancher.bgysmartcity.com:8082
     stdin_open: true
     tty: true
     ports:
-      - 5001:80/tcp
+    - 8082:80/tcp
     labels:
       io.rancher.container.pull_image: always
   registry:
     image: registry:latest
-    hostname: registry
     stdin_open: true
     volumes:
-      - /usr/local2/docker_volume/registry:/var/lib/registry
-      - /usr/local2/docker_volume/registry/config/config.yml:/etc/docker/registry/config.yml
+    - /usr/local2/docker_volume/registry/config/config.yml:/etc/docker/registry/config.yml
+    - /usr/local2/docker_volume/registry/registry:/var/lib/registry
     tty: true
     ports:
-      - 5000:5000/tcp
+    - 5000:5000/tcp
     labels:
-      io.rancher.container.pull_image: always
-  jenkins: #docker rancher jenkins； 安装失败了。最后在主机上面安装的
-    privileged: true
-    image: jenkins/jenkins:2.199-alpine
-    stdin_open: true
-    volumes:
-      - /usr/local/jenkins_volume/jenkins_home:/var/jenkins_home  #持久化jenkins目录；chmod -R 3000:3000 /usr/local/jenkins_volume/jenkins_home
-      - /usr/bin/docker:/var/bin/docker #dockr执行命令
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/alternatives/:/var/java #java 环境
-      - /etc/localtime:/etc/localtime #时间同步
-    tty: true
-    ports:
-      - 8989:8080/tcp
-      - 30001:50000/tcp
-    user: root #指定root用户执行，防止出现权限不走问题。
-    labels:
-      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: 'true'

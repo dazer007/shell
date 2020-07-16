@@ -32,3 +32,9 @@ registry.xxx.xxx
 rancher.xxx.xxx
 jenkins.xxx.xxx
 
+
+地址：
+http://jenkins.ityun.ltd/
+http://iotrancher.bgysmartcity.com:8081 jenkins
+http://iotrancher.bgysmartcity.com:8082 rancher
+http://iotrancher.bgysmartcity.com:8083 docker registry
