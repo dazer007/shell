@@ -1,0 +1,178 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<maven2-moduleset plugin="maven-plugin@3.6">
+  <actions/>
+  <description>负责打包，负责打所有的平台</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>4</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@2.5.6">
+      <durationName>second</durationName>
+      <count>1</count>
+      <userBoost>false</userBoost>
+    </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>com.ourslook</groupId>
+    <artifactId>iot-platform-base-server</artifactId>
+  </rootModule>
+  <rootPOM>/usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/pom.xml</rootPOM>
+  <goals>clean package -Dmaven.test.skip=true -U</goals>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <ignoreUpstremChanges>false</ignoreUpstremChanges>
+  <ignoreUnsuccessfulUpstreams>false</ignoreUnsuccessfulUpstreams>
+  <archivingDisabled>false</archivingDisabled>
+  <siteArchivingDisabled>false</siteArchivingDisabled>
+  <fingerprintingDisabled>false</fingerprintingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>-1</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
+  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
+  <blockTriggerWhenBuilding>true</blockTriggerWhenBuilding>
+  <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <reporters/>
+  <publishers/>
+  <buildWrappers/>
+  <prebuilders/>
+  <postbuilders>
+    <hudson.tasks.Shell>
+      <command>echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform base =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform alarm =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild-bgytonghu.sh
+
+
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform schedulejob =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform log =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform upperapp =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;=================  iot-license =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/iot-license/
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/iot-license/dockerBuild-bgytonghu.sh
+</command>
+    </hudson.tasks.Shell>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_platform_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-base</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-base:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_platform_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-base-2</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-base:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_platform_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-alarmlinkage</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-alarmlinkage:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_platform_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-schedulejob</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-schedulejob:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_platform_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-syslog</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-syslog:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a19</environmentId>
+      <endpoint>http://10.104.16.46/v2-beta</endpoint>
+      <credentialId>rancher_gateway_api_key</credentialId>
+      <service>SpringCloudIot-Platform/iot-platform-upperapp</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-upperapp:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+  </postbuilders>
+  <runPostStepsIfResult>
+    <name>SUCCESS</name>
+    <ordinal>0</ordinal>
+    <color>BLUE</color>
+    <completeBuild>true</completeBuild>
+  </runPostStepsIfResult>
+</maven2-moduleset>

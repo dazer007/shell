@@ -1,0 +1,172 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<maven2-moduleset plugin="maven-plugin@3.6">
+  <actions/>
+  <description>middleware-all</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>2</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@2.5.6">
+      <durationName>second</durationName>
+      <count>1</count>
+      <userBoost>false</userBoost>
+    </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <rootModule>
+    <groupId>com.ourslook</groupId>
+    <artifactId>middleware-video-haikang</artifactId>
+  </rootModule>
+  <rootPOM>/usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-video-haikang/pom.xml</rootPOM>
+  <goals>clean package -Dmaven.test.skip=true -U</goals>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <ignoreUpstremChanges>true</ignoreUpstremChanges>
+  <ignoreUnsuccessfulUpstreams>false</ignoreUnsuccessfulUpstreams>
+  <archivingDisabled>false</archivingDisabled>
+  <siteArchivingDisabled>false</siteArchivingDisabled>
+  <fingerprintingDisabled>false</fingerprintingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>-1</mavenValidationLevel>
+  <runHeadless>false</runHeadless>
+  <disableTriggerDownstreamProjects>false</disableTriggerDownstreamProjects>
+  <blockTriggerWhenBuilding>true</blockTriggerWhenBuilding>
+  <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+  <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+  <reporters/>
+  <publishers/>
+  <buildWrappers/>
+  <prebuilders/>
+  <postbuilders>
+    <hudson.tasks.Shell>
+      <command>echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-accesscontroldoor-jieshun 01 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-accesscontroldoor-jieshun
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-accesscontroldoor-jieshun/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-airconditioning-hailin 02 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-airconditioning-hailin
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-airconditioning-hailin/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-carpark-jieshun 03 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-carpark-jieshun
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-carpark-jieshun/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-elevator-taichuan 04 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-elevator-taichuan
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-elevator-taichuan/dockerBuild-bgytonghu.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-face-wanfeng 05 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-face-wanfeng
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-face-wanfeng/dockerBuild-bgytonghu.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-feederbus-wanfeng 06 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-feederbus-wanfeng
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-feederbus-wanfeng/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-information-publish-chinashine 07 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-information-publish-chinashine
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-information-publish-chinashine/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-internet-behavior-sangfor 08 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-internet-behavior-sangfor
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-internet-behavior-sangfor/dockerBuild-bgytonghu.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-light-kuaisicong 09 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-light-kuaisicong
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-light-kuaisicong/dockerBuild-bgytonghu.sh
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-pilotless-automobile-baidu 10 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-pilotless-automobile-baidu
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-pilotless-automobile-baidu/dockerBuild-bgytonghu.sh
+
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-soil-irrigation-sPlant 11 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-soil-irrigation-sPlant
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-soil-irrigation-sPlant/dockerBuild-bgytonghu.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-video-haikang 12 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-video-haikang
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-video-haikang/dockerBuild-bgytonghu.sh
+
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-visual-intercom-taichuan 13 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-visual-intercom-taichuan
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-visual-intercom-taichuan/dockerBuild-bgytonghu.sh
+
+
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= middleware middleware-wifi-huawei 14 =============&apos;
+cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-wifi-huawei
+sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-middleware-one-service/middleware-wifi-huawei/dockerBuild-bgytonghu.sh</command>
+    </hudson.tasks.Shell>
+  </postbuilders>
+  <runPostStepsIfResult>
+    <name>SUCCESS</name>
+    <ordinal>0</ordinal>
+    <color>BLUE</color>
+    <completeBuild>true</completeBuild>
+  </runPostStepsIfResult>
+</maven2-moduleset>
