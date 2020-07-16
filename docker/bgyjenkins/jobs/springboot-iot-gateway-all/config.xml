@@ -24,7 +24,7 @@
     <groupId>com.ourslook</groupId>
     <artifactId>iot-gateway-base-server</artifactId>
   </rootModule>
-  <rootPOM>/usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/pom.xml</rootPOM>
+  <rootPOM>/var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/pom.xml</rootPOM>
   <goals>clean package -Dmaven.test.skip=true -U</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
@@ -48,33 +48,37 @@
   <postbuilders>
     <hudson.tasks.Shell>
       <command>echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= gateway base =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild-bgytonghu.sh
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= gateway base =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild.sh
 
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= gateway alarm =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild-bgytonghu.sh
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= gateway alarm =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild.sh
 
 
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= gateway schedulejob =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild-bgytonghu.sh
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= gateway schedulejob =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild.sh
 
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= gateway log =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild-bgytonghu.sh</command>
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= gateway log =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild.sh</command>
     </hudson.tasks.Shell>
   </postbuilders>
   <runPostStepsIfResult>

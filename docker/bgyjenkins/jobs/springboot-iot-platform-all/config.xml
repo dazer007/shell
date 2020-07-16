@@ -4,19 +4,19 @@
   <description>负责打包，负责打所有的平台</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>1</daysToKeep>
-        <numToKeep>4</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@2.5.6">
+    <jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl plugin="branch-api@2.5.7">
       <durationName>second</durationName>
       <count>1</count>
       <userBoost>false</userBoost>
     </jenkins.branch.RateLimitBranchProperty_-JobPropertyImpl>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>1</daysToKeep>
+        <numToKeep>1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -29,7 +29,7 @@
     <groupId>com.ourslook</groupId>
     <artifactId>iot-platform-base-server</artifactId>
   </rootModule>
-  <rootPOM>/usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/pom.xml</rootPOM>
+  <rootPOM>/var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/pom.xml</rootPOM>
   <goals>clean package -Dmaven.test.skip=true -U</goals>
   <aggregatorStyleBuild>true</aggregatorStyleBuild>
   <incrementalBuild>false</incrementalBuild>
@@ -53,120 +53,126 @@
   <postbuilders>
     <hudson.tasks.Shell>
       <command>echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= platform base =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild-bgytonghu.sh
-
-
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= platform alarm =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild-bgytonghu.sh
+        echo &apos;&apos;
+        echo &apos;================= platform base =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild.sh
 
 
 
-
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= platform schedulejob =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild-bgytonghu.sh
-
-
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= platform log =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild-bgytonghu.sh
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= platform alarm =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild.sh
 
 
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;================= platform upperapp =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild-bgytonghu.sh
 
 
-echo &apos;&apos;
-echo &apos;&apos;
-echo &apos;=================  iot-license =============&apos;
-cd /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/iot-license/
-sh /usr/local2/jenkins_volume/jenkins_home/workspace/springcloud-iot-2020/iot-license/dockerBuild-bgytonghu.sh
-</command>
+
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= platform schedulejob =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild.sh
+
+
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= platform log =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild.sh
+
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;================= platform upperapp =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild.sh
+
+        echo &apos;&apos;
+        echo &apos;&apos;
+        echo &apos;=================  iot-license =============&apos;
+        cd /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild-bgytonghu.sh
+        sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild.sh
+      </command>
     </hudson.tasks.Shell>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_platform_api_key</credentialId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-base</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-base:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_platform_api_key</credentialId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-base-2</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-base:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_platform_api_key</credentialId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-alarmlinkage</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-alarmlinkage:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_platform_api_key</credentialId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-schedulejob</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-schedulejob:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_platform_api_key</credentialId>
+      <endpoint>http://10.104.16.48/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-syslog</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-syslog:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.46/v2-beta</endpoint>
-      <credentialId>rancher_gateway_api_key</credentialId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-upperapp</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-upperapp:0.01</image>
       <confirm>false</confirm>
       <startFirst>false</startFirst>
       <ports></ports>
       <environments></environments>
-      <timeout>50</timeout>
+      <timeout>300</timeout>
     </jenkins.plugins.rancher.RancherBuilder>
   </postbuilders>
   <runPostStepsIfResult>
