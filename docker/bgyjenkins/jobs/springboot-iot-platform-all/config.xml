@@ -52,55 +52,59 @@
   <prebuilders/>
   <postbuilders>
     <hudson.tasks.Shell>
-      <command>echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= platform base =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild.sh
+      <command>
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform base =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-base/server/dockerBuild.sh
 
 
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= platform alarm =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild.sh
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform alarm =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-alarm-linkage/server/dockerBuild.sh
 
 
 
 
-
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= platform schedulejob =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild.sh
+clean package -Dmaven.test.skip=true -U
 
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= platform log =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild.sh
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform schedulejob =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-schedule-job/server/dockerBuild.sh
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= platform upperapp =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild.sh
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;=================  iot-license =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild.sh
-      </command>
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform log =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-sys-log/server/dockerBuild.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= platform upperapp =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-platform-one-service/iot-platform-upperapp/server/dockerBuild.sh
+
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;=================  iot-license =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/iot-license/dockerBuild.sh
+</command>
     </hudson.tasks.Shell>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
@@ -152,7 +156,7 @@
     </jenkins.plugins.rancher.RancherBuilder>
     <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
       <environmentId>1a19</environmentId>
-      <endpoint>http://10.104.16.48/v2-beta</endpoint>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
       <credentialId>platform_E2816A68DB1F9D217F9F</credentialId>
       <service>SpringCloudIot-Platform/iot-platform-syslog</service>
       <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-platform-syslog:0.01</image>

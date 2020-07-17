@@ -48,38 +48,86 @@
   <postbuilders>
     <hudson.tasks.Shell>
       <command>echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= gateway base =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild.sh
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= gateway base =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-base/server/dockerBuild.sh
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= gateway alarm =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild.sh
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= gateway alarm =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-alarm-linkage/server/dockerBuild.sh
 
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= gateway schedulejob =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild.sh
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= gateway schedulejob =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-schedule-job/server/dockerBuild.sh
 
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;&apos;
-        echo &apos;================= gateway log =============&apos;
-        cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild-bgytonghu.sh
-        sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild.sh</command>
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;&apos;
+echo &apos;================= gateway log =============&apos;
+cd /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild-bgytonghu.sh
+sh /var/lib/jenkins/workspace/springcloud-iot-2020/platform-services-parent/iot-gateway-one-service/iot-gateway-sys-log/server/dockerBuild.sh</command>
     </hudson.tasks.Shell>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a30</environmentId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>rancher-of-gateway</credentialId>
+      <service>iot-gateway/iot-gateway-base</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-base:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>300</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a30</environmentId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>rancher-of-gateway</credentialId>
+      <service>iot-gateway/iot-gateway-schedulejob</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-schedulejob:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>300</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a30</environmentId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>rancher-of-gateway</credentialId>
+      <service>iot-gateway/iot-gateway-alarmlinkage</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-alarmlinkage:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>300</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
+    <jenkins.plugins.rancher.RancherBuilder plugin="rancher@1.0.13-SNAPSHOT">
+      <environmentId>1a30</environmentId>
+      <endpoint>http://10.104.16.48:8081/v2-beta</endpoint>
+      <credentialId>rancher-of-gateway</credentialId>
+      <service>iot-gateway/iot-gateway-syslog</service>
+      <image>iotrancher.bgysmartcity.com:5000/bgytonghu/iot-gateway-syslog:0.01</image>
+      <confirm>false</confirm>
+      <startFirst>false</startFirst>
+      <ports></ports>
+      <environments></environments>
+      <timeout>50</timeout>
+    </jenkins.plugins.rancher.RancherBuilder>
   </postbuilders>
   <runPostStepsIfResult>
     <name>SUCCESS</name>
