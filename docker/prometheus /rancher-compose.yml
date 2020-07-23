@@ -1,0 +1,17 @@
+version: '2'
+services:
+  node-exporter:
+    scale: 1
+    start_on_create: true
+  grafana:
+    scale: 1
+    start_on_create: true
+  cadvisor:
+    scale: 1
+    start_on_create: true
+  prometheus-rancher-exporter:
+    scale: 1
+    start_on_create: true
+  prometheus:
+    scale: 1
+    start_on_create: true
