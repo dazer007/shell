@@ -4,15 +4,6 @@ services:
     image: prom/node-exporter:latest
     stdin_open: true
     tty: true
-  grafana:
-    image: grafana/grafana:5.0.0
-    stdin_open: true
-    tty: true
-    links:
-    - prometheus:prometheus
-    - prometheus-rancher-exporter:prometheus-rancher-exporter
-    ports:
-    - 3000:3000/tcp
   cadvisor:
     image: google/cadvisor:latest
     stdin_open: true
@@ -34,6 +25,15 @@ services:
     labels:
       io.rancher.container.agent.role: environment
       io.rancher.container.create_agent: '''true'''
+  grafana:
+    image: grafana/grafana:5.0.0
+    stdin_open: true
+    tty: true
+    links:
+      - prometheus:prometheus
+      - prometheus-rancher-exporter:prometheus-rancher-exporter
+    ports:
+      - 3000:3000/tcp
   prometheus:
     image: prom/prometheus
     stdin_open: true
