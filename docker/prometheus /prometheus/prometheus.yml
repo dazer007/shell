@@ -51,5 +51,12 @@ scrape_configs:
     # scheme defaults to 'http'.
     scrape_interval: 5s
     static_configs:
-      - targets: #http://39.98.173.142/metrics  9104, 这里我们映射了一下，使用了80端口
+        - targets: #http://39.98.173.142:9104/metrics  9104, 这里我们映射了一下，使用了80端口
           - '39.98.173.142:80'
+          - '39.98.173.142:9104'
+
+  - job_name: 'MongoDB'
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+          - '192.168.0.208:9001'
