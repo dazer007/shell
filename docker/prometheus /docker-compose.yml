@@ -11,7 +11,6 @@ services:
     stdin_open: true
     tty: true
     links:
-    - prometheus:prometheus
     - prometheus-rancher-exporter:prometheus-rancher-exporter
     ports:
     - 3000:3000/tcp
@@ -36,6 +35,14 @@ services:
     labels:
       io.rancher.container.agent.role: environment
       io.rancher.container.create_agent: '''true'''
+  mongodb-exporter:
+    image: targetprocess/mongodb_exporter
+    stdin_open: true
+    tty: true
+    ports:
+    - 9001:9001/tcp
+    command:
+    - --mongodb.uri=mongodb://mongodb_exporter:mongodb_exporter_pwd.@39.98.173.142:47071
   prometheus:
     image: prom/prometheus
     stdin_open: true
@@ -47,18 +54,9 @@ services:
     - cadvisor:cadvisor
     - node-exporter:node-exporter
     - prometheus-rancher-exporter:prometheus-rancher-exporter
+    - mongodb-exporter:mongodb-exporter
     ports:
     - 9090:9090/tcp
     command:
     - --config.file=/etc/prometheus/prometheus.yml
     - --storage.tsdb.path=/prometheus
-  mongodb-exporter:
-    image: targetprocess/mongodb_exporter
-    stdin_open: true
-    tty: true
-    ports:
-    - 9001:9001/tcp
-    command:
-    - --mongodb.uri
-    - =
-    - mongodb://iotMongoUserX:.123aB.iotMongoUserXpWD@39.98.173.142:47071

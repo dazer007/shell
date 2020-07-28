@@ -12,6 +12,9 @@ services:
   prometheus-rancher-exporter:
     scale: 1
     start_on_create: true
+  mongodb-exporter:
+    scale: 1
+    start_on_create: true
   prometheus:
     scale: 1
     start_on_create: true
