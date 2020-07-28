@@ -1,0 +1,33 @@
+version: '2'
+services:
+  elasticsearch:
+    mem_limit: 1000000000
+    cap_add:
+    - IPC_LOCK
+    image: elasticsearch:6.8.11
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      bootstrap.memory_lock: 'true'
+      cluster.name: docker-cluster
+      xpack.security.enabled: 'false'
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+      nofile:
+        hard: 65536
+        soft: 65536
+    volumes:
+    - /usr/local2/docker_volume/elk/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+    - 9200:9200/tcp
+  kibana:
+    image: kibana:6.8.11
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    stdin_open: true
+    tty: true
+    links:
+    - elasticsearch:elasticsearch
+    ports:
+    - 5601:5601/tcp
