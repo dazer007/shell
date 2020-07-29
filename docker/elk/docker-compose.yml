@@ -1,10 +1,14 @@
 version: '2'
 services:
+  logstash:
+    image: logstash:6.8.0
+    stdin_open: true
+    tty: true
   elasticsearch:
     mem_limit: 1000000000
     cap_add:
     - IPC_LOCK
-    image: elasticsearch:6.8.11
+    image: elasticsearch:6.8.0
     environment:
       ES_JAVA_OPTS: -Xms512m -Xmx512m
       bootstrap.memory_lock: 'true'
@@ -22,7 +26,7 @@ services:
     ports:
     - 9200:9200/tcp
   kibana:
-    image: kibana:6.8.11
+    image: kibana:6.8.0
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     stdin_open: true
@@ -31,3 +35,9 @@ services:
     - elasticsearch:elasticsearch
     ports:
     - 5601:5601/tcp
+  filebeat:
+    image: elastic/filebeat:6.8.0
+    stdin_open: true
+    tty: true
+    links:
+    - elasticsearch:elasticsearch
