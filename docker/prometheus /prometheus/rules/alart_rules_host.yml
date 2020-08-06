@@ -12,8 +12,8 @@ groups:
         labels:
           severity: error  #规则的级别，如：waring、error、
         annotations:  #告警通知的描述。
-          summary: Instance {{ $lable.instance }} 挂掉了
-          description: {{ $lable.instance }} job {{ $lables.job }} 已经停止了10分钟
+          summary: "Instance {{ $labels.instance }} 挂掉了"
+          description: "{{ $labels.instance }} job {{ $labels.job }} 已经停止了10分钟, (current value: {{ $value }}s)"
 
       - alert: cpuMore80 #告警名称，自己起
         expr: 100 - (avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)  > 80  #表达式，必须是 prosql可以执行的；
@@ -21,8 +21,8 @@ groups:
         labels:
           severity: error  #规则的级别，如：waring、error、
         annotations:  #告警通知的描述。
-          summary: Instance {{ $lable.instance }} cpu超过80%
-          description: {{ $lable.instance }} job {{ $lables.job }} cpu长时间超过80
+          summary: "Instance {{ $labels.instance }} cpu超过80%"
+          description: "{{ $labels.instance }} job {{ $labels.job }} cpu长时间超过80, (current value: {{ $value }}s)"
 
       - alert: memMore80 #告警名称，自己起
         expr: (1 - (node_memory_MemAvailable_bytes{} / (node_memory_MemTotal_bytes{})))* 100 > 80  #表达式，必须是 prosql可以执行的；
@@ -30,5 +30,5 @@ groups:
         labels:
           severity: error  #规则的级别，如：waring、error、
         annotations:  #告警通知的描述。
-          summary: Instance {{ $lable.instance }} 内存超过80%
-          description: {{ $lable.instance }} job {{ $lables.job }} 内存长时间超过80
+          summary: "Instance {{ $labels.instance }} 内存超过80%"
+          description: "{{ $labels.instance }} job {{ $labels.job }} 内存长时间超过80, (current value: {{ $value }}s)"
