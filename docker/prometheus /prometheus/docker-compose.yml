@@ -1,0 +1,71 @@
+version: '2'
+services:
+  node-exporter:
+    image: prom/node-exporter:latest
+    stdin_open: true
+    tty: true
+    ports:
+    - 9100:9100/tcp
+  grafana:
+    image: grafana/grafana:6.7.4
+    stdin_open: true
+    tty: true
+    links:
+    - prometheus-rancher-exporter:prometheus-rancher-exporter
+    ports:
+    - 3000:3000/tcp
+  cadvisor:
+    image: google/cadvisor:latest
+    stdin_open: true
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    tty: true
+  prometheus-rancher-exporter:
+    image: infinityworks/prometheus-rancher-exporter:latest
+    environment:
+      CATTLE_URL: http://192.168.0.208/v2-beta
+      CATTLE_ACCESS_KEY: E293DAE1434DFA8B94BD
+      CATTLE_SECRET_KEY: pzuef9SHgZDyDw2ijtyMkHCr2UaCrnPeq4oGR4it
+      HIDE_SYS: 'YES'
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.agent.role: environment
+      io.rancher.container.create_agent: '''true'''
+  mongodb-exporter:
+    image: targetprocess/mongodb_exporter
+    stdin_open: true
+    tty: true
+    ports:
+    - 9001:9001/tcp
+    command:
+    - --mongodb.uri=mongodb://mongodb_exporter:mongodb_exporter_pwd.@39.98.173.142:47071
+  prometheus:
+    image: prom/prometheus:v2.20.1
+    stdin_open: true
+    volumes:
+    - /usr/local/docker_volume/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    - /usr/local/docker_volume/prometheus/rules/:/etc/prometheus/rules/
+    - /usr/local/docker_volume/prometheus/data:/prometheus
+    tty: true
+    links:
+    - mongodb-exporter:mongodb-exporter
+    - cadvisor:cadvisor
+    - node-exporter:node-exporter
+    - alertmanager:alertmanager
+    - prometheus-rancher-exporter:prometheus-rancher-exporter
+    ports:
+    - 9090:9090/tcp
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --storage.tsdb.path=/prometheus
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    stdin_open: true
+    volumes:
+    - /usr/local/docker_volume/prometheus/alertmanager/data:/etc/alertmanager/data
+    - /usr/local/docker_volume/prometheus/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    tty: true
