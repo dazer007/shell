@@ -1,0 +1,13 @@
+#监控主机的规则
+
+groups:
+  - name: general.host.rules #自己起一个名称
+    rules:
+      - alert: InstanceDown #告警名称，自己起；这里是实例挂掉了
+        expr: up == 0  #表达式，必须是 prosql可以执行的
+        for: 10m  #持续时间，10m之内都是这个状态，就告警。如果发现告警立马上报，可以设置0；
+        labels:
+          severity: error  #规则的级别，如：waring、error、
+        annotations:  #告警通知的描述。
+          summary: Instance {{ $lable.instance }} 挂掉了
+          description: {{ $lable.instance }} job {{ $lables.job }} 已经停止了10分钟

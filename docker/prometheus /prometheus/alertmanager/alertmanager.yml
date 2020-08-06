@@ -1,0 +1,35 @@
+#alartmanager配置文件
+global:
+  resolve_timeout: 5m #全局配置~解析超时时间
+  ##配置全局发送邮件的配置
+  # The smarthost and SMTP sender used for mail notifications.
+  smtp_smarthost: 'smtp.aliyun.com:465'
+  smtp_from: 'duandazhi@aliyun.com'
+  smtp_auth_username: 'duandazhi@aliyun.com'
+  smtp_auth_password: '7518479160.Ab.'
+  smtp_require_tls: true
+
+#配置告警中的分组
+route:
+  group_by: ['alertname'] #分组名称
+  group_wait: 10s  #这一组告警接收到告警，等待10s。 看10s内还有没有告警发送过来。有一块发送出去
+  group_interval: 10s  #每组发送告警间隔时间
+  repeat_interval: 1h #重复告警发送时间，减少发送邮件频率。两次发送邮件间隔必须大于1h;  两条一样的告警多久发送
+  receiver: 'aliyun.mail'  #这个指定接收者 $receivers.name，比如我们 把`web.hook` 换成：`aliyun.mail`
+
+#配置告警接收者
+receivers:
+  - name: 'web.hook'
+    webhook_configs:
+      - url: 'http://127.0.0.1:5001/'
+  - name: 'aliyun.mail'
+    email_configs:
+      - to: 'duandazhi@ourslook.com'
+
+#抑制，用来告警收敛.
+#inhibit_rules:
+#  - source_match:
+#      severity: 'critical'
+#    target_match:
+#      severity: 'warning'
+#    equal: ['alertname', 'dev', 'instance']
