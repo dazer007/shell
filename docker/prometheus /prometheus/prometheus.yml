@@ -12,6 +12,8 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets: ["alertmanager:9093"]
+rule_files:
+  - "rules/*.yml"
 
 # 抓取数据配置
 scrape_configs:
