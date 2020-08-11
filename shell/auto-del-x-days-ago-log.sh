@@ -84,6 +84,6 @@ find /usr/local/logs/iot-platform-base/ -type f -name '*.tmp' -exec rm -rf {} \;
 #find /usr/local/logs/iot-platform-alarmlinkage/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
 
 # 2：删除所有qcuredb_开头的日志文件
-#find /data/db_backup/ -mtime +10 -name "*.sql.zip" -exec rm -rf {} \;
+find /usr/local2/mysql_backup/ -mtime +10 -name "*.sql.zip" -exec rm -rf {} \;
 # 3：删除所有类型文件包含文件夹 nginx 日志； * 比较危险，删除文件夹 或者 不是 日志文件也会被清理
 #find /usr/local/nginx/logs -mtime +2 -name "*.log" -exec rm -rf {} \;

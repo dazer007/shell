@@ -2,9 +2,9 @@
 
 DUMP=/usr/bin/mongodump #mongodump备份文件执行路径
 
-OUT_DIR=/usr/local/mongobake/mongod_bak_now #临时备份目录
+OUT_DIR=/usr/local2/mongobake/mongod_bak_now #临时备份目录
 
-TAR_DIR=/usr/local/mongobake/mongod_bak_list #备份存放路径
+TAR_DIR=/usr/local2/mongobake/mongod_bak_list #备份存放路径
 
 DATE=`date +%Y_%m_%d` #获取当前系统时间
 
@@ -23,7 +23,8 @@ rm -rf $OUT_DIR/*
 mkdir -p $OUT_DIR/$DATE
 mkdir -p $TAR_DIR
 
-$DUMP -h localhost:47071 -u $DB_USER -p $DB_PASS -o $OUT_DIR/$DATE #备份全部数据库
+#mongodump -h localhost:47071  -d iot_platform_mongo -u iotMongoUserX -p .123aB.iotMongoUserXpWD  --authenticationDatabase admin  -o /usr/local2/mongobake/baketest/
+$DUMP -h localhost:47071 -u $DB_USER -p $DB_PASS -o --authenticationDatabase admin  $OUT_DIR/$DATE #备份全部数据库
 
 tar -zcvf $TAR_DIR/$TAR_BAK $OUT_DIR/$DATE #压缩为.tar.gz格式
 

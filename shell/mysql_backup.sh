@@ -4,7 +4,8 @@ DATE=$(date +%F_%H-%M-%S)
 HOST=localhost
 USER=root
 PASS=root007xX
-BACKUP_DIR=/data/db_backup
+#BACKUP_DIR=/data/db_backup
+BACKUP_DIR=/usr/local2/mysql_backup
 # egrep 是排除
 DB_LIST=$(mysql -h$HOST -u$USER -p$PASS -s -e "show databases;" 2>/dev/null |egrep -v "Database|information_schema|mysql|performance_schema|sys")
 
