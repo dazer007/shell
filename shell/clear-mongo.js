@@ -1,3 +1,5 @@
+//clear-mongo.js
+
 var mongo=new Mongo("10.105.0.6:47071");
 var db=mongo.getDB("iot_gateway_mongo");
 

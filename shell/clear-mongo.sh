@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#clear-mongo.sh
 # 删除MongoDB日志表
 # 参考：MongoDB 定时删除数据 https://blog.csdn.net/CL_YD/article/details/79461528
 # 参考：shell脚本传递参数给mongo命令 https://blog.csdn.net/fangfu123/article/details/104748183
@@ -9,6 +9,8 @@ mongo 10.105.0.6:47071<<EOF
 use admin;
 db.auth("iotMongoUserX",".123aB.iotMongoUserXpWD");
 show dbs;
+
+use iot_gateway_mongo;
 
 db.getCollection('RunLog-mw-airconditioning-hailin').drop();
 db.getCollection('RunLog-mw-automobile-baidu').drop();
