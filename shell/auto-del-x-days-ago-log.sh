@@ -97,4 +97,4 @@ find /home/ftpuser/ftp/upload/videoCatchface -mtime +31 -name "*.gif" -exec rm -
 
 
 # 5： 删除MongoDB日志
-find /var/log/mongodb  -mtime +7 -name "mongod.log.2020-*" -exec rm -rf {} \;
+find /var/log/mongodb  -mtime +2 -name "mongod.log.2020-*" -exec rm -rf {} \;
