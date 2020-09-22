@@ -6,6 +6,7 @@ find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {}
 find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 find /usr/local/logs/iot-eureka/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
 
+
 find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.gz'  -exec rm -rf {} \;
 find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 find /usr/local/logs/iot-gateway-alarmlinkage/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;

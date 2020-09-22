@@ -34,43 +34,43 @@ Date.prototype.addDays = function(number) {
 var today30Ago =  new Date().addDays(10).Format("yyyy-MM-dd hh:mm:ss");
 printjson("当前时间: " + today30Ago);
 
-printjson("清理01-");
+printjson("清理30天前服务01-");
 db.getCollection('Services-mw-bus-wanfeng-feederBusBooking').find({"createTime": {$lt: ''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-bus-wanfeng-feederBusBooking').remove({"_id":item._id})});
 
-printjson("清理02-");
+printjson("清理30天前服务02-");
 db.getCollection('Services-mw-bus-wanfeng-feederBusTicket').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-bus-wanfeng-feederBusTicket').remove({"_id":item._id})});
 
-printjson("清理03-");
+printjson("清理30天前服务03-");
 db.getCollection('Services-mw-carpark-jieshun-carin').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-carpark-jieshun-carin').remove({"_id":item._id})});
 
-printjson("清理04-");
+printjson("清理30天前服务04-");
 db.getCollection('Services-mw-doorcontrol-jieshun-doorrecord').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-doorcontrol-jieshun-doorrecord').remove({"_id":item._id})});
 
-printjson("清理05-");
+printjson("清理30天前服务05-");
 db.getCollection('Services-mw-face-wanfeng-getReturnNumber').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-face-wanfeng-getReturnNumber').remove({"_id":item._id})});
 
-printjson("清理06-");
+printjson("清理30天前服务06-");
 db.getCollection('Services-mw-face-wanfeng-mqCousumer').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-face-wanfeng-mqCousumer').remove({"_id":item._id})});
 
-printjson("清理07-");
+printjson("清理30天前服务07-");
 db.getCollection('Services-mw-face-wanfeng-returnNumber').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-face-wanfeng-returnNumber').remove({"_id":item._id})});
 
-printjson("清理08-");
+printjson("清理30天前服务08-");
 db.getCollection('Services-mw-internetbehavior-sangfor-appRank').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-internetbehavior-sangfor-appRank').remove({"_id":item._id})});
 
 printjson("清理09-");
 db.getCollection('Services-mw-internetbehavior-sangfor-userRank').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-internetbehavior-sangfor-userRank').remove({"_id":item._id})});
 
-printjson("清理10-");
+printjson("清理30天前服务10-");
 db.getCollection('Services-mw-soilirrigation-splant-returnNumber').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-soilirrigation-splant-returnNumber').remove({"_id":item._id})});
 
-printjson("清理11-");
+printjson("清理30天前服务11-");
 db.getCollection('Services-mw-video-haikang-videoCatchcar').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-video-haikang-videoCatchcar').remove({"_id":item._id})});
 
-printjson("清理12-");
+printjson("清理30天前服务12-");
 db.getCollection('Services-mw-video-haikang-videoCatchface').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-video-haikang-videoCatchface').remove({"_id":item._id})});
 
-printjson("清理13-");
+printjson("清理30天前服务13-");
 db.getCollection('Services-mw-visualintercom-taichuan-returnNumber').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-visualintercom-taichuan-returnNumber').remove({"_id":item._id})});
 
 

@@ -15,4 +15,5 @@ fi
  
 echo $(date +%T%n%F)" Restart mongodb Services " >> mongodb.log
 #重启服务
-systemctl restart mongod.service  
+systemctl restart mongod.service #重启MongoDB
+#nohup bash /usr/local/tomcat8-8081/bin/startup.sh &>/dev//null &  #tomcat9开机启动（tomcat手工安装形式）

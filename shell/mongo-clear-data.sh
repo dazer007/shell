@@ -30,7 +30,25 @@ db.getCollection('RunLog-mw-wifi-huawei').drop();
 db.getCollection('Services-mw-bus-wanfeng-feederBusBooking').find({"createTime": {lt:'2020-08-12 11:35:35'}}).forEach(function(item){db.getCollection('Services-mw-bus-wanfeng-feederBusBooking').remove({"_id":item._id})});
 
 
-load("clear-mongo.js")
+load("mongo-clear-data.js")
+
+
+
+use iot_platform_mongo;
+db.getCollection('RunLog-mw-airconditioning-hailin').drop();
+db.getCollection('RunLog-mw-automobile-baidu').drop();
+db.getCollection('RunLog-mw-bus-wanfeng').drop();
+db.getCollection('RunLog-mw-carpark-jieshun').drop();
+db.getCollection('RunLog-mw-doorcontrol-jieshun').drop();
+db.getCollection('RunLog-mw-elevator-taichuan').drop();
+db.getCollection('RunLog-mw-face-wanfeng').drop();
+db.getCollection('RunLog-mw-informationpublish-chinashine').drop();
+db.getCollection('RunLog-mw-internetbehavior-sangfor').drop();
+db.getCollection('RunLog-mw-light-kuaisicong').drop();
+db.getCollection('RunLog-mw-soilirrigation-splant').drop();
+db.getCollection('RunLog-mw-video-haikang').drop();
+db.getCollection('RunLog-mw-visualintercom-taichuan').drop();
+db.getCollection('RunLog-mw-wifi-huawei').drop();
 
 exit;
 EOF
