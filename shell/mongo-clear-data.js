@@ -58,7 +58,7 @@ db.getCollection('Services-mw-face-wanfeng-returnNumber').find({"createTime": {$
 printjson("清理30天前服务08-");
 db.getCollection('Services-mw-internetbehavior-sangfor-appRank').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-internetbehavior-sangfor-appRank').remove({"_id":item._id})});
 
-printjson("清理09-");
+printjson("清理30天前服务09-");
 db.getCollection('Services-mw-internetbehavior-sangfor-userRank').find({"createTime": {$lt:''+ today30Ago +''}}).forEach(function(item){db.getCollection('Services-mw-internetbehavior-sangfor-userRank').remove({"_id":item._id})});
 
 printjson("清理30天前服务10-");

@@ -1,5 +1,5 @@
 # /etc/rc.d/rc.local
-    # 找了编辑rc.local,执行完毕，需要授权执行权限： must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# 找了编辑rc.local,执行完毕，需要授权执行权限： must run 'chmod +x /etc/rc.d/rc.local' to ensure
 # `echo "nohup bash    /usr/local/sh/inotifiwait_rsync_dir.sh &>/dev//null  &" >> /etc/rc.local`
 # `echo "nohup /usr/local/tomcat85-8080/bin/startup.sh  &" >> /etc/rc.local`、
 # nohup bash /usr/local/tomcat/tomcat9/bin/startup.sh &> /dev/null &
@@ -9,3 +9,4 @@ nohup bash /usr/local/sh/inotifiwait_rsync_dir.sh &>/dev//null &  #执行备份�
 nohup ntpdate   stdtime.gov.hk #开机自动校准时间，首先自己要在命令行执行一次，试一下。看是否OK
 nohup bash /usr/local/tomcat9/bin/startup.sh &>/dev//null &  #tomcat9开机启动（tomcat手工安装形式）
 /usr/local/redis-5.0.8/src/redis-server  /usr/local/redis-5.0.8/redis.conf #redis 开机启动
+/usr/local/openresty/nginx/sbin/nginx &>/dev//null &  #启动openresty
