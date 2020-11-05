@@ -6,7 +6,7 @@
 # `echo "/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf" >> /etc/rc.local`
 touch /var/lock/subsys/local.txt  #测试rc.local是否执行成功
 nohup bash /usr/local/sh/inotifiwait_rsync_dir.sh &>/dev//null &  #执行备份脚本,或者其他启动就要执行的脚本，如 tomcat、nginx
-nohup ntpdate   stdtime.gov.hk #开机自动校准时间，首先自己要在命令行执行一次，试一下。看是否OK
+nohup ntpdate   stdtime.gov.hk & #开机自动校准时间，首先自己要在命令行执行一次，试一下。看是否OK
 nohup bash /usr/local/tomcat9/bin/startup.sh &>/dev//null &  #tomcat9开机启动（tomcat手工安装形式）
 /usr/local/redis-5.0.8/src/redis-server  /usr/local/redis-5.0.8/redis.conf #redis 开机启动
 /usr/local/openresty/nginx/sbin/nginx &>/dev//null &   #启动openresty
