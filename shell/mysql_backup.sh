@@ -9,6 +9,9 @@ BACKUP_DIR=/usr/local2/mysql_backup
 # egrep 是排除
 DB_LIST=$(mysql -h$HOST -u$USER -p$PASS -s -e "show databases;" 2>/dev/null |egrep -v "Database|information_schema|mysql|performance_schema|sys")
 
+
+# 1：第一种备份方式，按照数据库整个库进行备份；一个库 一个zip文件
+# 优势：方便 ； 缺点： 整个库备份 文件比较大，出问题，不好查找单个库文件；
 for DB in $DB_LIST; do
     BACKUP_NAME=$BACKUP_DIR/${DB}_${DATE}.sql
     ## 说明 /dev/null 是空设备，像一个垃圾桶，任何不要的东西都放进去。当然也可以变成自己的文件
@@ -22,3 +25,6 @@ for DB in $DB_LIST; do
     	rm -rf $BACKUP_NAME
    fi
 done
+
+
+# 2：第二种方式备份，按照单库单张表进行备份；
