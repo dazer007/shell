@@ -1,4 +1,4 @@
-使用子账号，启动tomcat
+#使用子账号，启动tomcat
 chown -R tomcat:tomcat /usr/local/tomcat9
 
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh stop'
