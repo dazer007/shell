@@ -1,4 +1,4 @@
-# /etc/rc.d/rc.local
+    # /etc/rc.d/rc.local
 # 找了编辑rc.local,执行完毕，需要授权执行权限： must run 'chmod +x /etc/rc.d/rc.local' to ensure
 # 发现配置rc.local对应服务还是无法启动，查看博客 centos7中启用rc-local服务 https://blog.csdn.net/x356982611/article/details/90414752
 # systemctl status rc-local.service 查看服务状态；
@@ -16,6 +16,7 @@
 touch /var/lock/subsys/local.txt  #测试rc.local是否执行成功
 nohup bash /usr/local/sh/inotifiwait_rsync_dir.sh &>/dev//null &  #执行备份脚本,或者其他启动就要执行的脚本，如 tomcat、nginx
 nohup ntpdate   stdtime.gov.hk & #开机自动校准时间，首先自己要在命令行执行一次，试一下。看是否OK;  需要查看 是否安装了 ntpdate;  yum install -y ntpdate
-nohup bash /usr/local/tomcat9/bin/startup.sh &>/dev//null &  #tomcat9开机启动（tomcat手工安装形式）
+# nohup bash /usr/local/tomcat9/bin/startup.sh &>/dev//null &  #tomcat9开机启动（tomcat手工安装形式）;
+su - tomcat  -c 'nohup /usr/local/tomcat9/bin/startup.sh &' #安全测试要求，使用非root用户启动
 /usr/local/redis-5.0.8/src/redis-server  /usr/local/redis-5.0.8/redis.conf #redis 开机启动
 /usr/local/openresty/nginx/sbin/nginx &>/dev//null &   #启动openresty
