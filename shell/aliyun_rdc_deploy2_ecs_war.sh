@@ -18,7 +18,7 @@ PORT_LISTENING=$(netstat -tln|grep 8080) #查看指定端口是否在运行
 PID_FILE=${APP_HOME}/pid   # 应用的pid会保存到这个文件中
 
 usage() {
-    echo "Usage: $PROG_NAME {start|stop|online|offline|restart}"
+    echo "Usage: $PROG_NAME {start|stop|online|offline|restart|delete}"
     exit 2
 }
 
@@ -100,6 +100,7 @@ restart() {
   start
   stop
 }
+
 
 #入口函数必须有
 case "$ACTION" in
