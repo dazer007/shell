@@ -1,5 +1,10 @@
 #使用子账号，启动tomcat
-chown -R tomcat:tomcat /usr/local/tomcat9
+#新增tomcat用户
+useradd tomcat
+#将tomcat目录owner改为tomcat
+chown -R tomcat:tomcat /usr/local/tomcat9  #把已有的目录变成tomcat的权限
+#切换到小权限用户
+su - tomcat
 
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh stop'
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh start'

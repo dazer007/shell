@@ -1,4 +1,4 @@
-    # /etc/rc.d/rc.local
+# /etc/rc.d/rc.local
 # 找了编辑rc.local,执行完毕，需要授权执行权限： must run 'chmod +x /etc/rc.d/rc.local' to ensure
 # 发现配置rc.local对应服务还是无法启动，查看博客 centos7中启用rc-local服务 https://blog.csdn.net/x356982611/article/details/90414752
 # systemctl status rc-local.service 查看服务状态；
