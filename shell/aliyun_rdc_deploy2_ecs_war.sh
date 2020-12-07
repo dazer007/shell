@@ -32,22 +32,22 @@ health_check() {
         if [ x$status_code != x200 ];then
             sleep 1
             ((exptime++))
-            echo -n -e "\rWait app to pass health check: $exptime..."
+            echo -n -e "\r健康检测：Wait app to pass health check: $exptime..."
         else
             break
         fi
         if [ $exptime -gt ${APP_START_TIMEOUT} ]; then
             echo
-            echo 'app start failed'
+            echo '健康检测：app start failed'
             exit 1
         fi
     done
-    echo "check ${HEALTH_CHECK_URL2} success"
+    echo "健康检测：check ${HEALTH_CHECK_URL2} success"
 }
 
 start_application() {
-    echo "start prepare tomcat"
-    echo 'stop_application pid Listening = '${PORT_LISTENING}
+    echo "准备启动tomcat start prepare tomcat"
+    echo '准备启动tomcat start_application pid Listening = '${PORT_LISTENING}
     #判断字符串是否存，-z 不存在
     #kill -0 pid, 经常用来检查一个进程是否存在，存在返回0；不存在返回1
     if [ -z "$PORT_LISTENING" ];then
@@ -62,10 +62,9 @@ start_application() {
        #su - tomcat  -c "nohup ${TOMCAT_HOME}bin/startup.sh &"
        nohup ${TOMCAT_HOME}bin/startup.sh &
        echo $! > ${PID_FILE} #将上一步的进程号码保存起来
-       echo "Application is running, please wait 2 seconds "
+       echo "tomcat正在运行，Application is running, please wait 2 seconds "
     else
-        echo "Application is running, exit"
-        exit 0
+        echo "tomcat之前就是运行状态，目前直接退出；Application is running, exit"
     fi
 }
 
@@ -83,13 +82,16 @@ stop_application() {
          echo "stop tomcat,stop tomcat ,stop tomcat...."
          ${TOMCAT_HOME}bin/catalina.sh stop
          echo ''
-         echo "stop tomcat sucess "
+         sleep 2
+         echo "stop tomcat sucess(停止tomcat成功) "
     fi
 }
 
 start() {
     start_application
+    echo 'start_application 执行完毕..'
     health_check
+    echo 'health_check 执行完毕,应用是否启动，最好手工检测一下'
 }
 
 stop() {
