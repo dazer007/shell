@@ -59,8 +59,8 @@ start_application() {
        if [ -f  ${TOMCAT_HOME}webapps/${JAR_NAME}.war ];then
             echo "${TOMCAT_HOME}webapps/${JAR_NAME}.war 文件已经存在, copy sucess !!"
        fi
-       #su - tomcat  -c "nohup ${TOMCAT_HOME}bin/startup.sh &"
-       nohup ${TOMCAT_HOME}bin/startup.sh &
+       su - tomcat  -c "nohup ${TOMCAT_HOME}bin/startup.sh &"
+       #nohup ${TOMCAT_HOME}bin/startup.sh &
        echo $! > ${PID_FILE} #将上一步的进程号码保存起来
        echo "tomcat正在运行，Application is running, please wait 2 seconds "
     else
@@ -80,7 +80,8 @@ stop_application() {
     else
         #停止tomcat
          echo "stop tomcat,stop tomcat ,stop tomcat...."
-         ${TOMCAT_HOME}bin/catalina.sh stop
+         #${TOMCAT_HOME}bin/catalina.sh stop
+         su - tomcat  -c "${TOMCAT_HOME}bin/catalina.sh stop"
          echo ''
          sleep 2
          echo "stop tomcat sucess(停止tomcat成功) "
