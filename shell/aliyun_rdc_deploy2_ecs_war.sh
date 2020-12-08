@@ -2,7 +2,7 @@
 # aliyun 云效部署代码 ecs
 #https://rdc.aliyun.com/ec/app/148148/env/486545/deploy/config?spm=a2c40.app_config_env_services_strategy.page.16.2acc9984cxoycf
 #参考脚本：云效==》基于SLB的滚动发布脚本示例  https://help.aliyun.com/document_detail/57399.html
-echo '这里测试脚本是执行了....'
+echo '这里测试脚本是执行了....，使用的是tomcat用户执行的脚本'
 
 PROG_NAME=$0
 ACTION=$1
@@ -59,8 +59,8 @@ start_application() {
        if [ -f  ${TOMCAT_HOME}webapps/${JAR_NAME}.war ];then
             echo "${TOMCAT_HOME}webapps/${JAR_NAME}.war 文件已经存在, copy sucess !!"
        fi
-       su - tomcat  -c "nohup ${TOMCAT_HOME}bin/startup.sh &"
-       #nohup ${TOMCAT_HOME}bin/startup.sh &
+       #su - tomcat  -c "nohup ${TOMCAT_HOME}bin/startup.sh &"
+       nohup ${TOMCAT_HOME}bin/startup.sh &
        echo $! > ${PID_FILE} #将上一步的进程号码保存起来
        echo "tomcat正在运行，Application is running, please wait 2 seconds "
     else
@@ -80,8 +80,8 @@ stop_application() {
     else
         #停止tomcat
          echo "stop tomcat,stop tomcat ,stop tomcat...."
-         #${TOMCAT_HOME}bin/catalina.sh stop
-         su - tomcat  -c "${TOMCAT_HOME}bin/catalina.sh stop"
+         ${TOMCAT_HOME}bin/catalina.sh stop
+         #su - tomcat  -c "${TOMCAT_HOME}bin/catalina.sh stop"
          echo ''
          sleep 2
          echo "stop tomcat sucess(停止tomcat成功) "
