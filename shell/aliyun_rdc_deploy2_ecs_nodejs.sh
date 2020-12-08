@@ -28,10 +28,14 @@ echo 'cp dist 目录到 nginx 目录完毕'
 cp -rf /usr/share/nginx/dist /usr/share/nginx/html
 mv /usr/share/nginx/dist /usr/share/nginx/html2
 echo '-----重新部署nginx end success ---------'
+chmod -R 755 /usr/share/nginx/
+echo '给nginx目录添加权限'
+nginx -s reload
+echo '重新加载nginx......'
 echo ' '
 echo ' '
 
-echo '-----部署到tomcat start---------'
+#echo '-----部署到tomcat start---------'
 #rm -rf /usr/local/tomcat9/webapps/ROOT/*.js
 #rm -rf /usr/local/tomcat9/webapps/ROOT/*.css
 #rm -rf /usr/local/tomcat9/webapps/ROOT/*.json
@@ -39,5 +43,5 @@ echo '-----部署到tomcat start---------'
 #rm -rf /usr/local/tomcat9/webapps/ROOT/icons
 #rm -rf /usr/local/tomcat9/webapps/ROOT/workbox-v3.6.3
 #\cp -rf /home/nginx/application/dist/* /usr/local/tomcat9/webapps/ROOT
-echo '-----部署到tomcat 目录 /usr/local/tomcat9/webapps/ROOT/ ---------'
-echo '-----部署到tomcat end success ---------'
+#echo '-----部署到tomcat 目录 /usr/local/tomcat9/webapps/ROOT/ ---------'
+#echo '-----部署到tomcat end success ---------'
