@@ -19,3 +19,4 @@ nohup ntpdate   stdtime.gov.hk & #开机自动校准时间，首先自己要在�
 su - tomcat  -c 'nohup /usr/local/tomcat9/bin/startup.sh &' #安全测试要求，使用非root用户启动
 /usr/local/redis-5.0.8/src/redis-server  /usr/local/redis-5.0.8/redis.conf #redis 开机启动
 /usr/local/openresty/nginx/sbin/nginx &>/dev//null &   #启动openresty
+/home/staragent/bin/staragentctl restart #重新启动阿里云agent  https://help.aliyun.com/document_detail/67353.html?spm=5176.11065259.1996646101.searchclickresult.25a33073WVKCIE

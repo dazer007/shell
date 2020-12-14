@@ -38,7 +38,11 @@ health_check() {
         fi
         if [ $exptime -gt ${APP_START_TIMEOUT} ]; then
             echo
-            echo '健康检测：app start failed'
+            echo '健康检测：app start failed (持续两分钟进行检查，应用还是没有启动)，这里进行日志打印'
+            echo ''
+            echo ''
+            echo '下面将开始打印所有tomcat日志'
+            cat  ${TOMCAT_HOME}logs/catalina.out
             exit 1
         fi
     done
@@ -54,6 +58,7 @@ start_application() {
         #如果没有启动tomcat,我们直接删除 war, 并且启动 tomcat
        rm -rf ${TOMCAT_HOME}webapps/${JAR_NAME}*
        rm -rf ${APP_HOME}/${JAR_NAME}.war
+       rm -rf ${TOMCAT_HOME}logs/*
        tar -zxvf /home/tomcat/package.tgz -C ${APP_HOME}
        cp ${APP_HOME}/${JAR_NAME}.war ${TOMCAT_HOME}webapps/${JAR_NAME}.war
        if [ -f  ${TOMCAT_HOME}webapps/${JAR_NAME}.war ];then
