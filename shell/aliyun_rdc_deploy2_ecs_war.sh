@@ -42,7 +42,8 @@ health_check() {
             echo ''
             echo ''
             echo '下面将开始打印所有tomcat日志'
-            cat  ${TOMCAT_HOME}logs/catalina.out
+            # cat -n catalina.out |tail -100  显示最后100行
+            cat  ${TOMCAT_HOME}logs/catalina.out |tail -200
             exit 1
         fi
     done
