@@ -2,13 +2,16 @@
 # mysql自动备份功能
 DATE=$(date +%F_%H-%M-%S)
 HOST=localhost
+PORT=33161
 USER=root
-PASS=root007xX
+PASS=root007..xX@!x9~
 #BACKUP_DIR=/data/db_backup
-BACKUP_DIR=/usr/local2/mysql_backup
+BACKUP_DIR=/usr/local/mysql_backup
 # egrep 是排除
-DB_LIST=$(mysql -h$HOST -u$USER -p$PASS -s -e "show databases;" 2>/dev/null |egrep -v "Database|information_schema|mysql|performance_schema|sys")
+DB_LIST=$(mysql -h$HOST -u$USER -P$PORT -p$PASS -s -e "show databases;" 2>/dev/null |egrep -v "Database|information_schema|mysql|performance_schema|sys")
 
+echo  "DB_LIST = $DB_LIST, 下面开始进行for循环..."
+echo  "DB_LIST如果是空的，说明脚本报错了，请手工通过命令行在linux上面运行"
 
 # 1：第一种备份方式，按照数据库整个库进行备份；一个库 一个zip文件
 # 优势：方便 ； 缺点： 整个库备份 文件比较大，出问题，不好查找单个库文件；
@@ -28,4 +31,3 @@ done
 
 
 # 2：第二种方式备份，按照单库单张表进行备份；
-
