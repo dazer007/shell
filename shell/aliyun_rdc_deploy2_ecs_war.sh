@@ -88,6 +88,9 @@ stop_application() {
          echo "stop tomcat,stop tomcat ,stop tomcat...."
          ${TOMCAT_HOME}bin/catalina.sh stop
          #su - tomcat  -c "${TOMCAT_HOME}bin/catalina.sh stop"
+         #catalina.sh stop 或者 shutdown.sh 经常出现没有关闭成功的情况，导致tomcat多次运行；
+         # 可以看到多个tomcat进程：echo `ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}'`
+         # free -g 发现每次启动之后内存都在增加，说明 stop没有停止掉；后面考虑 使用kill 暴力解决
          echo ''
          sleep 2
          echo "stop tomcat sucess(停止tomcat成功) "
