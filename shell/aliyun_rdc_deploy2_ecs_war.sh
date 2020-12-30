@@ -101,7 +101,8 @@ stop_application() {
               echo Application is already stopped !!!! pid is empty
           else
               echo pid = $PID is killed !!!!...
-              kill $PID
+              # kill $PID
+              pkill -9 java
           fi
 
          echo "stop tomcat sucess(停止tomcat成功) "
