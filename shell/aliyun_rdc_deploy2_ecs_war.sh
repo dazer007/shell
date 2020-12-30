@@ -105,6 +105,8 @@ stop_application() {
           #    echo pid = $PID is killed !!!!...
               # kill $PID
           # fi
+          
+          ## 越秀服务器取消掉判断，判断一直报未找到 -z 命令
           if [-z "$PID"]; then
                 for item in $PID
                     do
