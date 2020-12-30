@@ -96,16 +96,9 @@ stop_application() {
          echo "wait app online in 2 seconds..."
          sleep 2
 
-         echo 'catalina.sh stop or shutdown.sh 经常关闭tomcat失败，我们kill 一下'
-         #PID=$(ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}')
-          #判断字符串是否存，-z 不存在
-          #if [ -z "$PID" ];then
-          #    echo Application is already stopped !!!! pid is empty
-          #else
-          #    echo pid = $PID is killed !!!!...
-              # kill $PID
-          # fi
-          if [[ "$PID" != ""]] ; then
+         echo 'catalina.sh stop or shutdown.sh 经常关闭tomcat失败，我们kill 一下，我们批量杀死谁'
+
+          if [  -z "$PID" ];then
                 for item in $PID
                     do
                       echo "杀死进程pid=" $item
