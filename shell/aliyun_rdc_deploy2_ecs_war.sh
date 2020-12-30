@@ -105,7 +105,7 @@ stop_application() {
           #    echo pid = $PID is killed !!!!...
               # kill $PID
           # fi
-          if [[ "$PID" != ""]] ; then
+          if [-z "$PID"]; then
                 for item in $PID
                     do
                       echo "杀死进程pid=" $item
