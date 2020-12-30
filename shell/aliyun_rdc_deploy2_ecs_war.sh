@@ -91,8 +91,19 @@ stop_application() {
          #catalina.sh stop 或者 shutdown.sh 经常出现没有关闭成功的情况，导致tomcat多次运行；
          # 可以看到多个tomcat进程：echo `ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}'`
          # free -g 发现每次启动之后内存都在增加，说明 stop没有停止掉；后面考虑 使用kill 暴力解决
-         echo ''
+         echo 'catalina.sh stop......'
          sleep 2
+
+         echo 'catalina.sh stop or shutdown.sh 经常关闭tomcat失败，我们kill 一下'
+         PID=$(ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}')
+          #判断字符串是否存，-z 不存在
+          if [ -z "$PID" ];then
+              echo Application is already stopped !!!! pid is empty
+          else
+              echo pid = $PID is killed !!!!...
+              kill $PID
+          fi
+
          echo "stop tomcat sucess(停止tomcat成功) "
     fi
 }

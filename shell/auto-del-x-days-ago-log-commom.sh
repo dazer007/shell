@@ -19,6 +19,6 @@ find /usr/local/tomcat9/bin/logs/qcure/ -mtime +1 -type f -name '*.gz' -exec rm 
 
 
 # 3-2： 半夜凌晨 关闭tomcat 删除日志，然后重新启动
-rm -f /usr/local/tomcat9/logs/catal ina.out
+rm -f /usr/local/tomcat9/logs/catalina.out
 #/usr/local/tomcat9/bin/catalina.sh start 进阶写法，如下； 等保测试要求使用非root账号启动tomcat
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh start'
