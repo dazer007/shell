@@ -18,7 +18,7 @@ PORT_LISTENING=$(netstat -tln|grep 8080) #查看指定端口是否在运行
 PID_FILE=${APP_HOME}/pid   # 应用的pid会保存到这个文件中
 
 usage() {
-    echo "Usage: $PROG_NAME {start|stop|online|offline|restart|delete}"
+    echo "Usage: $PROG_NAME {start|stop|online|offline|restart|delete|kill}"
     exit 2
 }
 
@@ -97,29 +97,38 @@ stop_application() {
          sleep 2
 
          echo 'catalina.sh stop or shutdown.sh 经常关闭tomcat失败，我们kill 一下'
-         #PID=$(ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}')
-          #判断字符串是否存，-z 不存在
-          #if [ -z "$PID" ];then
-          #    echo Application is already stopped !!!! pid is empty
-          #else
-          #    echo pid = $PID is killed !!!!...
-              # kill $PID
-          # fi
-          
-          ## 越秀服务器取消掉判断，判断一直报未找到 -z 命令
-          if [-z "$PID"]; then
-                for item in $PID
-                    do
-                      echo "杀死进程pid=" $item
-                      kill -9 $item
-                    done
-                echo "tomcat pid ====>" $PID
-            else
-                echo "Application is already stopped !!!! pid is empty"
-            fi
+         #我们kill关闭tomcat
+         killTomcat
 
          echo "stop tomcat sucess(停止tomcat成功) "
     fi
+}
+
+killTomcat() {
+      #可能存在多个进程
+      #PID=$(ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}')
+      echo pid is $PID
+
+      # 删除方式1，只删除一个进程
+      #判断字符串是否存，-z 不存在
+#      if [ -z "$PID" ];then
+#            echo Application is already stopped !!!! pid is empty
+#       else
+#           echo pid = $PID is killed !!!!...
+#           kill $PID
+#      fi
+
+      # 删除方式2，for循环删除
+      if [ -z "$PID" ]; then
+          echo "Application is already stopped !!!! pid is empty"
+      else
+          for item in $PID
+              do
+                echo "杀死进程pid=" $item
+                kill -9 $item
+              done
+          echo "tomcat pid ====>" $PID
+      fi
 }
 
 start() {
@@ -132,12 +141,6 @@ start() {
 stop() {
     stop_application
 }
-
-restart() {
-  start
-  stop
-}
-
 
 #入口函数必须有
 case "$ACTION" in
@@ -156,6 +159,9 @@ case "$ACTION" in
     restart)
         stop
         start
+    ;;
+    kill)
+        killTomcat
     ;;
     *)
         usage

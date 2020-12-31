@@ -1,5 +1,32 @@
 #公用删除
 
+killTomcat() {
+      #可能存在多个进程
+      PID=$(ps -ef | grep tomcat9 | grep -v grep | awk '{print $2}')
+      echo pid is $PID
+
+      # 删除方式1，只删除一个进程
+      #判断字符串是否存，-z 不存在
+#      if [ -z "$PID" ];then
+#            echo Application is already stopped !!!! pid is empty
+#       else
+#           echo pid = $PID is killed !!!!...
+#           kill $PID
+#      fi
+
+      # 删除方式2，for循环删除
+      if [ -z "$PID" ]; then
+          echo "Application is already stopped !!!! pid is empty"
+      else
+          for item in $PID
+              do
+                echo "杀死进程pid=" $item
+                kill -9 $item
+              done
+          echo "tomcat pid ====>" $PID
+      fi
+}
+
 # 删除所有qcuredb_开头的日志文件
 find /data/db_backup/ -mtime +5 -name "qcuredb_*" -exec rm -rf {} \;
 
@@ -19,6 +46,8 @@ find /usr/local/tomcat9/bin/logs/qcure/ -mtime +1 -type f -name '*.gz' -exec rm 
 
 
 # 3-2： 半夜凌晨 关闭tomcat 删除日志，然后重新启动
+su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh stop'
+killTomcat
 rm -f /usr/local/tomcat9/logs/catalina.out
 #/usr/local/tomcat9/bin/catalina.sh start 进阶写法，如下； 等保测试要求使用非root账号启动tomcat
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh start'
