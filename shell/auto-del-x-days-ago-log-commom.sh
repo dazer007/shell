@@ -30,7 +30,7 @@ killTomcat() {
 # 删除所有qcuredb_开头的日志文件
 find /data/db_backup/ -mtime +5 -name "qcuredb_*" -exec rm -rf {} \;
 
-# 1：# linux  删除日志文件; nginx 日志经常性高达20G，10几个G; nginx日志一定要清理
+# 1：# linux  删除日志文件; nginx 日志 access.log 经常性高达20G，10几个G; nginx日志一定要清理
 # nginx 访问日志默认没有按照天进行分割，我们要自己通过脚本处理一下
 # 分割博客 【https://blog.csdn.net/ab601026460/article/details/97375956】- 【nginx 分割访问日志】
 # nginx.split.sh
@@ -42,7 +42,7 @@ find /var/log/nginx -mtime +3 -name "*.gz" -exec rm -rf {} \;
 rm -rf /var/log/rsyncd.log
 
 
-# 3: tomcat相关的日志清理;tomcat日志有时候高达上10G；tomcat日志一定要清理
+# 3: tomcat相关的日志清理; catalina.out tomcat日志有时候高达上10G；tomcat日志一定要清理
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.log'  -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
