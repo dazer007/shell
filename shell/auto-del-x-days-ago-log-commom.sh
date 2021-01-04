@@ -48,11 +48,13 @@ find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.txt' -exec rm -rf {} \;
 find /usr/local/tomcat9/bin/logs/qcure/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
+find /usr/local/sh/logs/ilife/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 
 
-# 3-2： 半夜凌晨 关闭tomcat 删除日志，然后重新启动
-su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh stop'
+# 4： 半夜凌晨 关闭tomcat 删除日志，然后重新启动;  tomcat分割catalina.out  挺麻烦；我们暴力一点每天定时重启进行 删除日志
+#su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh stop'
 killTomcat
+echo '....................删除tomcat进程成功............................'
 rm -f /usr/local/tomcat9/logs/catalina.out
 #/usr/local/tomcat9/bin/catalina.sh start 进阶写法，如下； 等保测试要求使用非root账号启动tomcat
 su - tomcat  -c '/usr/local/tomcat9/bin/catalina.sh start'
