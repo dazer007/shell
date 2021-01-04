@@ -30,14 +30,14 @@ killTomcat() {
 # 删除所有qcuredb_开头的日志文件
 find /data/db_backup/ -mtime +5 -name "qcuredb_*" -exec rm -rf {} \;
 
-# 1：# linux  删除日志文件
+# 1：# linux  删除日志文件; nginx 日志经常性高达20G，10几个G; nginx日志一定要清理
 find /var/log/nginx -mtime +3 -name "*.log_" -exec rm -rf {} \;
 
 # 2: 删除rsyncd 备份两台服务器数据的记录日志,在A-->B, 在服务器B 上面进行删除日志.
 rm -rf /var/log/rsyncd.log
 
 
-# 3: tomcat相关的日志清理
+# 3: tomcat相关的日志清理;tomcat日志有时候高达上10G；tomcat日志一定要清理
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.log'  -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.gz' -exec rm -rf {} \;
 find /usr/local/tomcat9/logs/ -mtime +1 -type f -name '*.tmp' -exec rm -rf {} \;
