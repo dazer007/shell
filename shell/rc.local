@@ -4,7 +4,7 @@
 # systemctl status rc-local.service 查看服务状态；
 # systemctl start rc-local.service  启动服务
 # systemctl stop rc-local.service  停止服务
-# systemctl enable rc-local.service  停止服务
+# systemctl enable rc-local.service  开机启动服务
 # 启动不成功，可以 查看 rc-local.service 状态； 也可以 到 /var/log/boot.log 看看启动日志
 
 # `echo "nohup bash    /usr/local/sh/inotifiwait_rsync_dir.sh &>/dev//null  &" >> /etc/rc.local`
