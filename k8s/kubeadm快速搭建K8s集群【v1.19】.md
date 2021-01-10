@@ -35,9 +35,9 @@ $ kubeadm join <Master节点的IP和端口 >
 
 | 角色       | IP            |
 | ---------- | ------------- |
-| k8s-master | 192.168.31.61 |
-| k8s-node1  | 192.168.31.62 |
-| k8s-node2  | 192.168.31.63 |
+| k8s-master | 172.28.243.140 |
+| k8s-node1  | 172.28.243.141 |
+| k8s-node2  | 172.28.243.142 |
 
 ```
 关闭防火墙：
@@ -57,9 +57,9 @@ $ hostnamectl set-hostname <hostname>
 
 在master添加hosts：
 $ cat >> /etc/hosts << EOF
-192.168.31.61 k8s-master
-192.168.31.62 k8s-node1
-192.168.31.63 k8s-node2
+172.28.243.140 k8s-master
+172.28.243.141 k8s-node1
+172.28.243.142 k8s-node2
 EOF
 
 将桥接的IPv4流量传递到iptables的链：
@@ -127,11 +127,11 @@ https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#initializing-your-control-plane-node 
 
-在192.168.31.61（Master）执行。
+在172.28.243.140（Master）执行。
 
 ```
 $ kubeadm init \
-  --apiserver-advertise-address=192.168.31.61 \
+  --apiserver-advertise-address=172.28.243.140 \
   --image-repository registry.aliyuncs.com/google_containers \
   --kubernetes-version v1.19.0 \
   --service-cidr=10.96.0.0/12 \
@@ -173,7 +173,7 @@ k8s-master   Ready    master   2m   v1.18.0
 
 ## 5. 加入Kubernetes Node
 
-在192.168.31.62/63（Node）执行。
+在172.28.243.141/63（Node）执行。
 
 向集群添加新节点，执行在kubeadm init输出的kubeadm join命令：
 
@@ -190,7 +190,7 @@ $ kubeadm token list
 $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
 63bca849e0e01691ae14eab449570284f0c3ddeea590f8da988c07fe2729e924
 
-$ kubeadm join 192.168.31.61:6443 --token nuja6n.o3jrhsffiqs9swnu --discovery-token-ca-cert-hash sha256:63bca849e0e01691ae14eab449570284f0c3ddeea590f8da988c07fe2729e924
+$ kubeadm join 172.28.243.140:6443 --token nuja6n.o3jrhsffiqs9swnu --discovery-token-ca-cert-hash sha256:63bca849e0e01691ae14eab449570284f0c3ddeea590f8da988c07fe2729e924
 ```
 
 或者直接命令快捷生成：kubeadm token create --print-join-command
