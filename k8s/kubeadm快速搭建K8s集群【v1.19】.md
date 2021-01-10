@@ -86,12 +86,12 @@ $ yum -y install docker-ce
 $ systemctl enable docker && systemctl start docker
 ```
 
-配置镜像下载加速器：
+配置镜像下载加速器: 可以换成自己的[aliyun mirros 地址](https://cr.console.aliyun.com/cn-shanghai/instances/mirrors)
 
 ```
 $ cat > /etc/docker/daemon.json << EOF
 {
-  "registry-mirrors": ["https://b9pmyelo.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://y3uhkhih.mirror.aliyuncs.com"]
 }
 EOF
 $ systemctl restart docker
@@ -178,8 +178,8 @@ k8s-master   Ready    master   2m   v1.18.0
 向集群添加新节点，执行在kubeadm init输出的kubeadm join命令：
 
 ```
-$ kubeadm join 192.168.31.61:6443 --token esce21.q6hetwm8si29qxwn \
-    --discovery-token-ca-cert-hash sha256:00603a05805807501d7181c3d60b478788408cfe6cedefedb1f97569708be9c5
+$ kubeadm join 172.28.243.140:6443 --token 92u11q.ld5a912ngxr7ddst \
+    --discovery-token-ca-cert-hash sha256:9044cc765a637a35f4150276e2fc78745711d588cbad2867bba76b919c50c3cd
 ```
 
 默认token有效期为24小时，当过期之后，该token就不可用了。这时就需要重新创建token，操作如下：
@@ -286,11 +286,3 @@ $ kubectl create clusterrolebinding dashboard-admin --clusterrole=cluster-admin 
 $ kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 ```
 使用输出的token登录Dashboard。
-
-
-
-> 讲师：李振良
->
-> 官方网站： http://www.ctnrs.com  
-
-<img src="https://k8s-1252881505.cos.ap-beijing.myqcloud.com/wx.png" style="zoom:50%;" />
