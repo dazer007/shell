@@ -1,11 +1,10 @@
-> 讲师：李振良
+> 讲师：阿良
 >
 > 官方网站： http://www.ctnrs.com  
 >
 > 说明：
 >
 > 1. 强烈建议学习课堂视频，更多细节都在里面！
-> 2. 本文档为内部学员资料，请不要随意转发。  
 
 kubeadm是官方社区推出的一个用于快速部署kubernetes集群的工具。
 
@@ -55,11 +54,12 @@ $ vim /etc/fstab  # 永久
 设置主机名：
 $ hostnamectl set-hostname <hostname>
 
-在master添加hosts：
+在master添加hosts，最后一行解决GitHub资源无法访问的问题：
 $ cat >> /etc/hosts << EOF
 172.28.243.140 k8s-master
 172.28.243.141 k8s-node1
 172.28.243.142 k8s-node2
+199.232.4.133  raw.githubusercontent.com
 EOF
 
 将桥接的IPv4流量传递到iptables的链：
@@ -94,7 +94,8 @@ $ cat > /etc/docker/daemon.json << EOF
   "registry-mirrors": ["https://y3uhkhih.mirror.aliyuncs.com"]
 }
 EOF
-$ systemctl restart docker
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
 $ docker info
 ```
 
@@ -193,6 +194,9 @@ $ openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outf
 $ kubeadm join 172.28.243.140:6443 --token nuja6n.o3jrhsffiqs9swnu --discovery-token-ca-cert-hash sha256:63bca849e0e01691ae14eab449570284f0c3ddeea590f8da988c07fe2729e924
 ```
 
+```
+kubeadm reset #清空当前初始化环境
+```
 或者直接命令快捷生成：kubeadm token create --print-join-command
 
 <https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/>
