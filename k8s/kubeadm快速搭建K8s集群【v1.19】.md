@@ -219,7 +219,7 @@ Calico 在每一个计算节点利用 Linux Kernel 实现了一个高效的虚�
 $ wget https://docs.projectcalico.org/manifests/calico.yaml
 ```
 
-下载完后还需要修改里面定义Pod网络（CALICO_IPV4POOL_CIDR），与前面kubeadm init指定的一样
+下载完后还需要修改里面定义Pod网络（CALICO_IPV4POOL_CIDR），与前面kubeadm init指定的一样。master、node节点都需要安装
 
 修改完后应用清单：
 
