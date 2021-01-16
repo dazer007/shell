@@ -1,0 +1,21 @@
+# 官网搜索 service
+# 查看网址：https://kubernetes.io/docs/concepts/services-networking/service/
+
+# kubectl apply -f xxx.yaml
+
+# 主要查看pod的标签：kubectl get pods --show-labels
+# kubectl get ep 查看servce是否代理成功
+# kubectl get svc #80:31497/tcp 打开浏览器，输入任意节点ip,输入 http://任意节点ip:31497 就可以访问
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx  #这里必须严格指定，标签选择器，保持一致；对应 labels；kubectl get pods --show-labels 进行查看；
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376 #容器内端口，如：8080
+  type: NodePort  #暴露到任意主机

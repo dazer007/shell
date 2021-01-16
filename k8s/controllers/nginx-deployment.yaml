@@ -1,0 +1,33 @@
+# 创建 Deployment
+# 下面是 Deployment 示例。其中创建了一个 ReplicaSet，负责启动三个 nginx Pods：
+# 示例地址，官网搜索框，搜索 Deployment，就能看到这个地址
+# https://kubernetes.io/search/?q=deployment
+# https://kubernetes.io/zh/docs/concepts/workloads/controllers/deployment/
+
+# 启动命令：kubectl apply -f nginx-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers: #可以指定多个镜像
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
+
+#一个yaml里面如果声明多个资源，使用---进行分割，不分割，就只执行最后一个资源
+---
