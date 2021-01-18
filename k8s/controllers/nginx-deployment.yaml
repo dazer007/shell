@@ -23,11 +23,16 @@ spec:
       labels:
         app: nginx
     spec:
+      nodeSelector: #可选； 节点调度，指定调到到 磁盘类型是 ssd的； 标签名称是自己随便定义；  如果找不到标签，就会调度失败； 条件必须满足
+        disktype: "ssd"
       containers: #可以指定多个镜像
         - name: nginx
           image: nginx:1.14.2
           ports:
             - containerPort: 80
+          resources: #可选； 这个节点增加资源的 cpu、内存等限制；只有限制了，才能 在 autoscale hpa的时候生效
+            request:
+              cpu: 0.5
 
 #一个yaml里面如果声明多个资源，使用---进行分割，不分割，就只执行最后一个资源
 ---
