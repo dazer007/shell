@@ -1,0 +1,28 @@
+# 官方文档搜索 "rbac"  https://kubernetes.io/zh/docs/reference/access-authn-authz/rbac/
+#  下面是一个位于 "default" 名字空间的 Role 的示例，可用来授予对 pods 的读访问权限：
+#  执行文件： kubectl  apply -f 01-Role-example.yaml
+#  查看执行情况 kubectl get role
+#  删除资源  kubectl  delete -f 01-Role-example.yaml
+apiVersion: rbac.authorization.k8s.io/v1  #kubectl api-versions 可以查看所有的取值
+kind: Role #kubectl api-resources中的Kind字段
+metadata:
+  namespace: default #kubectl get namespaces  查看所有命名空间
+  name: pod-reader
+rules:
+  - apiGroups: [""] # "" 标明 core API 组；kubectl api-resources中的APIGROUP查看所有组
+    resources: ["pods"]  #kubectl api-resources中的NAME查看所有的资源
+    verbs: ["get", "watch", "list"]  # kubectl api-resources  -o wide #查看对应的资源动词 VERBS
+
+
+---
+#ClusterRole 示例
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" 被忽略，因为 ClusterRoles 不受名字空间限制
+  name: secret-reader
+rules:
+  - apiGroups: [""]
+    # 在 HTTP 层面，用来访问 Secret 对象的资源的名称为 "secrets"
+    resources: ["secrets"]
+    verbs: ["get", "watch", "list"]
