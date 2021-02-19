@@ -8,6 +8,7 @@ gateway网关账号 gateway/gateway123@ C97D5E98C8C822B64038/nUKDAhUo4YCN7Cs23Ky
 平台账号 platform/platform 5D327A6D5BB8E92A0A9F/P5jW4Y2rYesaVLwWT6eP25pCe9BVtiWzGjGGSHct
 打包账号(基础设施账号iot-infrastructure) jenkins/jenkins
 
+docker限制多少
 
 IOT服务器最低配置
 4C、32G、200G硬盘、linux centos 7.4+最新
