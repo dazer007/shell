@@ -18,5 +18,5 @@ shell、docker、docker-componse、k8s、nginx
 
 1.  Fork 本仓库
 2.  new Feat_xxx branch
-3.  提交代码
+3.  提交代码 x
 4.  新建 Pull Request
