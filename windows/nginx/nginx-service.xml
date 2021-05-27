@@ -1,0 +1,25 @@
+﻿<!--1： 文件名称1 nginx-service.xml -->
+<service>
+<!--windows下载WinSW.NET4.exe改名叫做nginx-server.exe,必须和nginx-server.xml同名 -->
+<!--@author dazer 20190807 update -->
+<id>nginx</id>
+
+<name>Nginx Service by [ company ourslook]</name>
+
+<description>nginx severs</description>
+
+<!--注意路径中千万不能包含空格，否则启动不了的 -->
+<env name="path" value="C:\\soft\\nginx-1.14.2"/>
+
+<!--windows杀nginx进程：taskkill /fi "imagename eq nginx.EXE" /f-->
+<!--windowsnginx启动：nginx.exe-->
+<!--windows重新加载配置：nginx.exe -s reload-->
+<!--windows验证配置：nginx.exe -t-->
+<!--启动和关闭的命令 -->
+<executable>nginx.exe</executable>
+<stopexecutable>nginx.exe -s stop</stopexecutable>
+
+<arguments>-p C:\soft\nginx-1.14.2</arguments>
+<logpath>C:\soft\nginx-1.14.2\logs/</logpath>
+<logmode>roll</logmode>
+</service>
